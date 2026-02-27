@@ -1,0 +1,91 @@
+# Deploy the Hugo site to GitHub Pages.
+#
+# Trigger: push to main/master (or manual workflow_dispatch).
+#
+# How it works:
+#   1. Run the Ruby migration script (static_export/generate.rb) to convert
+#      cms_export/pages.json (Textile) → Markdown files in content/.
+#   2. Run `hugo --minify` to build the static site into public/.
+#   3. Upload public/ and deploy to GitHub Pages.
+#
+# Prerequisites:
+#   - Run `bundle exec rake export:cms_data` locally whenever content changes,
+#     commit the updated cms_export/pages.json, and push.
+#   - Enable GitHub Pages in repo Settings → Pages → Source: "GitHub Actions".
+#   - Install a Hugo theme and set it in hugo.toml before first deployment.
+#
+# After the Rails-app migration is complete you can skip step 1 entirely:
+#   just commit Markdown files directly to content/ and push.
+
+name: Deploy Hugo site to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'cms_export/pages.json'
+      - 'static_export/**'
+      - 'content/**'
+      - 'hugo.toml'
+      - 'themes/**'
+      - '.github/workflows/deploy-static.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build Hugo site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true   # fetch Hugo theme submodule (if any)
+          fetch-depth: 0     # full history for .GitInfo / .Lastmod
+
+      # -----------------------------------------------------------------------
+      # Step 1 — Convert Textile CMS export → Markdown (migration phase only).
+      # Once you write content directly as Markdown in content/, you can
+      # remove or comment out these two steps.
+      # -----------------------------------------------------------------------
+      # Step 2 — Build with Hugo
+      # -----------------------------------------------------------------------
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true   # required for themes that use Hugo Pipes / SCSS
+
+      - name: Build Hugo site
+        run: hugo --minify
+        # Uncomment and set if deploying to a sub-path (e.g. user.github.io/repo-name):
+        # env:
+        #   HUGO_BASEURL: https://apohllo.github.io/homepage/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

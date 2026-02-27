@@ -1,0 +1,44 @@
+baseURL = "https://apohllo.pl/"
+languageCode = "pl"
+title = "apohllo.pl"
+defaultContentLanguage = "pl"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+buildDrafts = false
+
+[pagination]
+  pagerSize = 20
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true   # allow raw HTML pass-through in Markdown
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
+
+[taxonomies]
+  tag = "tags"
+
+[params]
+  author = "Aleksander Smywiński-Pohl"
+  description = "więcej niż strona domowa..."
+  ShowReadingTime = false
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+  defaultTheme = "light"
+
+[params.homeInfoParams]
+  Title = "apohllo.pl"
+  Content = "więcej niż strona domowa..."
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/apohllo"
