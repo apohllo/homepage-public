@@ -17,7 +17,7 @@
       <span></span>
     </button>
     <nav class="sidebar-nav" aria-label="Subsections">
-      {{- range .Sections | sort "Title" }}
+      {{- range sort .Sections "Title" }}
       <a href="{{ .Permalink }}" class="sidebar-nav-item">{{ .Title }}</a>
       {{- end }}
     </nav>

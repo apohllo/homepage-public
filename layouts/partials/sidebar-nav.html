@@ -1,4 +1,4 @@
-{{- $items := union .Sections .RegularPages | sort "Title" }}
+{{- $items := sort (union .Sections .RegularPages) "Title" }}
 {{- if $items }}
 <aside class="sidebar" id="page-sidebar">
   <button class="sidebar-toggle"
