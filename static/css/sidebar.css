@@ -1,0 +1,109 @@
+/* ── Two-column sidebar layout ─────────────────────────────────────────── */
+
+.page-with-sidebar {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.sidebar {
+  width: 210px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 5rem;
+}
+
+.sidebar-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Hamburger button (hidden on desktop) ─────────────────────────────── */
+
+.sidebar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: 1px solid var(--border, #e0e0e0);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0.45rem 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.sidebar.open .sidebar-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.sidebar.open .sidebar-toggle span:nth-child(2) {
+  opacity: 0;
+}
+.sidebar.open .sidebar-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Nav list ─────────────────────────────────────────────────────────── */
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-nav-item {
+  display: block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--secondary);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-nav-item:hover {
+  color: var(--primary);
+  background: var(--code-bg);
+  border-left-color: var(--primary);
+}
+
+/* ── Mobile ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .page-with-sidebar {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: static;
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .sidebar-nav {
+    display: none;
+    padding-bottom: 0.5rem;
+  }
+
+  .sidebar.open .sidebar-nav {
+    display: flex;
+  }
+}

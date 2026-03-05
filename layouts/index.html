@@ -1,0 +1,21 @@
+{{- define "main" }}
+
+<div class="page-with-sidebar">
+  {{- partial "sidebar-nav.html" . }}
+
+  <div class="sidebar-content">
+    {{- if and site.Params.homeInfoParams (not site.Params.profileMode.enabled) }}
+    {{- partial "home_info.html" . }}
+    {{- end }}
+
+    {{- if .Content }}
+    <div class="post-content">
+      {{- if not (.Param "disableAnchoredHeadings") }}
+      {{- partial "anchored_headings.html" .Content -}}
+      {{- else }}{{ .Content }}{{ end }}
+    </div>
+    {{- end }}
+  </div>
+</div>
+
+{{- end }}{{- /* end main */ -}}

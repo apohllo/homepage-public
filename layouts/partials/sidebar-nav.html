@@ -1,0 +1,19 @@
+{{- $items := union .Sections .RegularPages | sort "Title" }}
+{{- if $items }}
+<aside class="sidebar" id="page-sidebar">
+  <button class="sidebar-toggle"
+          id="sidebar-toggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+          aria-controls="page-sidebar">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav class="sidebar-nav" aria-label="Section navigation">
+    {{- range $items }}
+    <a href="{{ .Permalink }}" class="sidebar-nav-item">{{ .Title }}</a>
+    {{- end }}
+  </nav>
+</aside>
+{{- end }}

@@ -1,0 +1,11 @@
+<script>
+(function () {
+  var btn     = document.getElementById('sidebar-toggle');
+  var sidebar = document.getElementById('page-sidebar');
+  if (!btn || !sidebar) return;
+  btn.addEventListener('click', function () {
+    var open = sidebar.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+}());
+</script>
