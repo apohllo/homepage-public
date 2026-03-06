@@ -1,3 +1,9 @@
+/* ── Widen PaperMod's main container when a sidebar is present ─────────── */
+
+.main:has(.page-with-sidebar) {
+  max-width: 1200px;
+}
+
 /* ── Two-column sidebar layout ─────────────────────────────────────────── */
 
 .page-with-sidebar {

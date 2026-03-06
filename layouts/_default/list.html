@@ -1,6 +1,7 @@
 {{- define "main" }}
 
 {{- $hasSections := .Sections }}
+{{- $allChildren := sort (union .Sections .RegularPages) "Title" }}
 
 <div class="{{ if $hasSections }}page-with-sidebar{{ end }}">
 
@@ -17,7 +18,7 @@
       <span></span>
     </button>
     <nav class="sidebar-nav" aria-label="Subsections">
-      {{- range sort .Sections "Title" }}
+      {{- range $allChildren }}
       <a href="{{ .Permalink }}" class="sidebar-nav-item">{{ .Title }}</a>
       {{- end }}
     </nav>
@@ -44,7 +45,8 @@
     </div>
     {{- end }}
 
-    {{/* Regular pages (e.g. blog posts, leaf pages directly in this section) */}}
+    {{/* Article cards — only for flat sections (blog, etc.) without subsections */}}
+    {{- if not $hasSections }}
     {{- $pages := .RegularPages }}
     {{- $paginator := .Paginate $pages }}
     {{- range $paginator.Pages }}
@@ -84,6 +86,7 @@
       </nav>
     </footer>
     {{- end }}
+    {{- end }}{{/* end if not $hasSections */}}
 
   </div>
 </div>
