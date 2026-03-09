@@ -41,24 +41,28 @@ Aby wykonać program napisany w języku C, należy najpierw dokonać jego kompil
 jego kodu źródłowego na ciąg instrukcji niskiego poziomu, zrozumiałych przez procesor. W systemach
 uniksopodobnych kompilacja odbywa się za pomocą polecenia `gcc`, które wymaga podania nazwy pliku do skompilowania, np.
 
-code(bash).
+```bash
 $ gcc prog1.c
+```
 
 W wyniku wywołania tego polecenia, tworzony jest plik a.out, który może zostać bezpośrednio uruchomiony. Przy uruchamianiu
 programu, jego Nazwa musi zostać poprzedzona kropką i *slashem*, np.
 
-code(bash).
+```bash
 $ ./a.out
+```
 
 Aby określić nazwę generowanego pliku, możemy skorzystać z opcji -o, np.
 
-code(bash).
+```bash
 $ gcc prog1.c -o prog1
+```
 
 Wtedy można wywołać program korzystając z tej nazwy:
 
-code(bash).
+```bash
 $ ./prog1
+```
 
 ### Podstawowe operacje wejścia/wyjścia
 

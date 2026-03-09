@@ -36,20 +36,23 @@ można skorzystać ze [sposobu opisanego na stronie projektu](http://www.modrail
 
 W Gentoo wystarczy wpisać:
 
-code.
+```
 emerge -va passenger
+```
 
 Następnie musimy włączyć obsługę modułu w serwerze Apache. Konieczna jest
 edycja pliku **/etc/conf.d/apache2**. Modyfikujemy zmienną **APACHE2\_OPTS**, tak by zawierała
 opcję **PASSENGER**:
 
-code.
+```
 APACHE2\_OPTS="-D INFO ... -D PASSENGER"
+```
 
 Na koniec restartujemy serwer:
 
-code.
+```
 /etc/init.d/apache2 restart
+```
 
 Jeśli jakiś **DocumentRoot** w konfiguracji Apache wskazuje na katalog `public` railsowego
 projektu, to wywołanie stowarzyszonego z nim adresu spowoduje jego uruchomienie.

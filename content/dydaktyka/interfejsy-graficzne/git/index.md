@@ -14,23 +14,27 @@ Na komputerze lokalnym w katalogu `library`
 
 1. Inicjujemy repozytorium git:
 
-code(bash).
+```bash
 $ git init
+```
 
 2. Dodajemy wszystkie pliki do indeksu:
 
-code(bash).
+```bash
 $ git add .
+```
 
 3. Zatwierdzamy zmiany:
 
-code(bash).
+```bash
 $ git commit -m "Import projektu"
+```
 
 4. Kopiujemy repozytorium na wierzbę, np.:
 
-code(bash).
+```bash
 $ scp -r .git pohl@wierzba.wzks.uj.edu.pl:~/library.git
+```
 
 Na wierzbie w katalogu domowym
 ------------------------------
@@ -39,39 +43,46 @@ Na wierzbie w katalogu domowym
 
 2. Klonujemy repozytorium (należy uwzględnić prawidłową ścieżkę):
 
-code(bash).
+```bash
 $ git clone file:///home/epi/pohl/library.git
+```
 
 3. Zmieniamy katalog na `library`
 
-code(bash).
+```bash
 $ cd library
+```
 
 4. Ustwiamy zmienną `.rvmrc`:
 
-code(bash).
+```bash
 $ echo 'rvm use 1.9.3' &gt;&gt; .rvmrc
 $ echo 'rvm gemset use global' &gt;&gt; .rvmrc
+```
 
 5. Przechodzimy do aktualnego katalogu i akceptujemy zmiany (y):
 
-code(bash).
+```bash
 $ cd .
+```
 
 6. Wywołujemy polecenie `bundle`:
 
-code(bash).
+```bash
 $ bundle
+```
 
 7. Aktualizujemy schemat bazy danych:
 
-code(bash).
+```bash
 $ rake db:migrate
+```
 
 8. Uruchamiamy serwer na odpowiednim porcie:
 
-code(bash).
+```bash
 $ rails s -p 33xx
+```
 
 Dla komputerów:
 

@@ -25,8 +25,9 @@ przekazywane do f tak jak w wywołaniu (f list-args).
 
 #### 13.1
 
-code(lisp).
+```lisp
 (funcall \#'+ 3 4) =&gt; 7
+```
 
 \#'symbol jest skrótem instrukcji (function symbol). Zagadnienie to omówione jest w rozdziale
 poświęconym notacji lambda.
@@ -39,7 +40,8 @@ odpowiada (funcall f list-args arg1 arg2 ...).
 
 #### 13.2
 
-code(lisp).
+```lisp
 (apply \#'+ 3 4 '(3 4)) =&gt; 14
+```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 12](/dydaktyka/lisp/lekcja-12) | [Lekcja 14](/dydaktyka/lisp/lekcja-14)

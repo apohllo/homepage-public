@@ -115,17 +115,20 @@ Uruchomienie zadań z Podstaw Sztucznej Inteligencji wymaga pewnych dodatkowych 
 
 W pierwszej kolejności pobieramy repozytorium z zadaniami:
 
-code(bash).
+```bash
 $ git clone https://github.com/apohllo/sztuczna-inteligencja.git
+```
 
 Następnie zmieniamy wersję Pythona na 3.10 w pliku `pypoetry.toml` i wywołujemy komendy, instalacji pakietu Poetry, aktualizacji zależności i instalacji pakietów:
 
-code(bash).
+```bash
 $ pip install poetry
 $ poetry lock
 $ poetry install --no-root
+```
 
 Teraz możemy uruchomić Jupyter Lab. Koniecznie musimy ustawić adres IP na 0.0.0.0, w przeciwnym razie nie będziemy mogli połączyć się z Jupiterem:
 
-code(bash).
+```bash
 $ poetry run jupyter lab --ip 0.0.0.0
+```
