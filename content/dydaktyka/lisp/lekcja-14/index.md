@@ -30,7 +30,7 @@ Ponieważ instrukacja ta jest niejawnie otoczna instrukcją (block nil) mozna ja
 
 #### 14.1
 
-```lisp
+code(lisp).
 (setq a 4) =&gt; 4
 (loop
 (setq a (+ a 1))
@@ -40,7 +40,6 @@ Ponieważ instrukacja ta jest niejawnie otoczna instrukcją (block nil) mozna ja
 (setq a (- a 1))
 (when (&lt; a 3) (return))
 ) =&gt; NIL
-```
 
 #### 14.1.2 dotimes
 
@@ -50,7 +49,7 @@ n razy, przy czym var przyjmuje w kolejnych iteracjach wartości o 0 do n-1. Na 
 
 #### 14.2
 
-```lisp
+code(lisp).
 (dotimes (i 4)
 (format t "~&I is ~S." i))
 I is 0.
@@ -58,7 +57,6 @@ I is 1.
 I is 2.
 I is 3.
 =&gt; NIL
-```
 
 #### 14.1.3 dolist
 
@@ -68,13 +66,12 @@ aż do osiągnięcia końca listy.
 
 #### 14.3
 
-```lisp
+code(lisp).
 (dolist (x '(a b c)) (print x))
 A
 B
 C
 =&gt; NIL
-```
 
 W najprostszej postaci dolist zwraca nil
 
@@ -82,12 +79,11 @@ W najprostszej postaci dolist zwraca nil
 
 Najbardziej skomplikowaną instrukcją związanąz iteracją jest do. Ma ona następującą postać
 
-```lisp
+code(lisp).
 (do ((var1 start1 step1)
 (var2 start2 step2) ...)
 (condition resultform)
 body)
-```
 
 Na początku zmienne var1, var2, ... za wiązane z wartościami start1, start2, ... Jeśli wartość nie jest podana wartość
 początkowa, to zmienne otrzymują wartość nil. Badany jest condition (warunek). Jeśli jest on spełniony, to iteracje są
@@ -98,7 +94,7 @@ jest w body).
 
 #### 14.4
 
-```lisp
+code(lisp).
 (do ((x 1 (+ x 1))
 (y 1 (\* y 2)))
 ((&gt; x 5) y)
@@ -116,7 +112,6 @@ WORKING
 16
 WORKING
 32
-```
 
 Zmienne są wiązane analogicznie jak w let. Istniej też forma do\*, w któej wiązanie następuje identycznie
 jak w let\*.
@@ -128,10 +123,9 @@ wywołuje pewną funkcję na każdym elemencie listy. Ma ona postać (mapcar f l
 
 #### 14.5
 
-```lisp
+code(lisp).
 (defun square (n) (\* n n)) =&gt; square
 (mapcar \#'squara '(1 2 3 4 5)) =&gt; (1 3 9 16 25)
-```
 
 Widzimy więc, że jest ona podobna do instrukcji apply, różni się jednak traktowaniem listy argumentów.
 Applay przekazuje wszystkie argumenty należące do listy argumentów "za jednym zamachem", podczas
@@ -141,9 +135,8 @@ są w osobnych listach.
 
 #### 14.6
 
-```lisp
+code(lisp).
 (mapcar \#'+ '(1 2 3) '(1 2 3)) =&gt; (2 4 6)
-```
 
 #### 14.1.6 mapcan
 
@@ -152,7 +145,7 @@ Wynik jest identyczny temu, który uzysklibyśmy stosują do listy wynikowej ins
 
 #### 14.7
 
-```lisp
+code(lisp).
 (defun inc (n)
 (cond ((numberp n) (+ n 1))
 (t nil)
@@ -161,7 +154,6 @@ Wynik jest identyczny temu, który uzysklibyśmy stosują do listy wynikowej ins
 (inc 1) =&gt; 2
 (inc 'a) =&gt; nil
 (mapcan \#'inc '(1 a 2 b 3 c)) =&gt; (2 3 4)
-```
 
 ### 14.2 Rekursja
 
@@ -177,14 +169,13 @@ Oto przykład rekursji w LISP:
 
 #### 14.8
 
-```lisp
+code(lisp).
 (defun silnia (n)
 (cond ((&lt; n 2) n)
 (t (\* n (silnia (- n 1))))
 )
 ) =&gt; silnia
 (silnia 5) =&gt; 120
-```
 
 Ponieważ w LISP nie ma ograniczeń na wartości liczb całkowitych (jedynym ograniczeniem jest wielkość
 stosu, czyli mówiąc ogólnie wielkość pamięci operacyjnej) powyższe wywołanie daje poprawne wyniki

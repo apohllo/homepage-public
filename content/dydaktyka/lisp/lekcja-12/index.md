@@ -28,7 +28,7 @@ z tymi obiektami. W zależności, czy zmienne te sąargumentami formalnymi, czy 
 związane są z argumentami tej funkcji, bądź z globlanymi wartościami tych zmiennych.
 h4. 12.1
 
-```lisp
+code(lisp).
 (defun globalna () b) =&gt; globalna
 (defun leksykalna (a)
 (setq b a)
@@ -39,7 +39,6 @@ h4. 12.1
 (leksykalna 7)
 Wartosc a 7 oraz funkcji globalna: 10
 =&gt; nil
-```
 
 Widzimy więc, że pomimo tego iż w ciele funkcji leksykalna zmienna a jest związana z pewną wartością
 to ze względu na jej leksykalny zakres, w funkcji globalna odwołujemy się do jej globalnej wartośći.
@@ -60,7 +59,7 @@ Jeśli teraz w ciele jakiejś funkcji dokonamy zmiany wartości takiej zmiennej,
 będzie widoczna również w pozostałych funkcjach.
 h4. 12.2
 
-```lisp
+code(lisp).
 (defvar **a** 10)
 (defun globalna () **a**) =&gt; globalna
 (defun specjalna (a)
@@ -70,7 +69,6 @@ h4. 12.2
 (specjalna 10)
 Wartość a: 10 oraz funkcji specjalna: 10
 =&gt; nil
-```
 
 Ponieważ zmienne specjalne mogą dawać dziwne wyniki, w różnych funkcjach stosuje się je zwykle jako
 zmienne globale, o ściśle określonym przeznaczeniu.
@@ -91,7 +89,7 @@ kodu, który zostanie wykonany ze zmiennymi var1, var2... zawężonymi leksykaln
 
 #### 12.3
 
-```lisp
+code(lisp).
 (defun demonstracja-let ()
 (setq a 10)
 (let ((a 20)) (format t "~&Wartosc a wewnatrz let ~S" a))
@@ -101,14 +99,13 @@ kodu, który zostanie wykonany ze zmiennymi var1, var2... zawężonymi leksykaln
 Wartosc a wewnatrz let 20
 Wartosc a poza let 10
 =&gt; nil
-```
 
 Wartości przypisywane zmiennym var1, var2... obliczane sa po kolei, natomiast związanie jest równoległe,
 to znaczy w części wiążącej instrukcji let, mamy dostęp do zmiennych var1, var2 sprzed związania.
 
 #### 12.4
 
-```lisp
+code(lisp).
 (defun demonstracja-kolejnosci ()
 (setq a 10)
 (let ((a 20)
@@ -118,7 +115,6 @@ to znaczy w części wiążącej instrukcji let, mamy dostęp do zmiennych var1,
 (demonstracja-kolenosci)
 Wartosc a: 20 wartosc b: 10
 =&gt; nil
-```
 
 ### 12.3.2 let\*
 
@@ -130,7 +126,7 @@ do zmiennej varj, poprzedzającej vari, to mamy jej wartość po związaniu.
 
 #### 12.5
 
-```lisp
+code(lisp).
 (defun demonstracja-kolejnosci2 ()
 (setq a 10)
 (let\* ((a 20)
@@ -140,6 +136,5 @@ do zmiennej varj, poprzedzającej vari, to mamy jej wartość po związaniu.
 (demonstracja-kolenosci2)
 Wartosc a: 20 wartosc b: 20
 =&gt; nil
-```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 11](/dydaktyka/lisp/lekcja-11) | [Lekcja 13](/dydaktyka/lisp/lekcja-13)

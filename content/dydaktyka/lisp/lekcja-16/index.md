@@ -20,14 +20,13 @@ może mieć następującą postać:
 
 #### 16.1
 
-```lisp
+code(lisp).
 (setq slownik '((jeden one)
 (dwa two)
 (trzy three)
 (cztery four)
 (piec five))
 ) =&gt; slownik
-```
 
 W zaprezentowanej liście mamy pięć wpisów, a w każdym z nich kolejne nazwy liczb naturalnych są
 kluczami, a odpowiadające im nazwy angielskie - wartościami.
@@ -40,19 +39,17 @@ klucz pokrywa się z key.
 
 #### 16.2
 
-```lisp
+code(lisp).
 (assoc 'dwa slownik) =&gt; (dwa two)
-```
 
 Dzięki temu łatwo możemy napisać funkcję wykorzystujące listy asocjacyjne, np:
 
 #### 16.3
 
-```lisp
+code(lisp).
 (defun tlumacz (slowo)
 (cadr(assoc slowo slowni))
 ) =&gt; tlumacz
 (tlumacz trzy) =&gt; three
-```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 15](/dydaktyka/lisp/lekcja-15) | [Lekcja 17](/dydaktyka/lisp/lekcja-17)

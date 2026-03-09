@@ -101,12 +101,11 @@ Na szczęście Ruby nie posiada takich pułapek - operatory matematyczne zachowu
 swoje naturalne priorytety. Dzięki temu poniższe działania dają taki sam wynik
 (w nawiasie podana jest interpretacja tych wyrażeń w *notacji obiektowej*):
 
-```ruby
+code(ruby).
 1 + 2 \* 3 \# 1.+(2.\*(3))
 \#=&gt; 7
 2 \* 3 + 1 \# 2.\*(3).+(1)
 \#=&gt; 7
-```
 
 W tym miejscu warto zwrócić uwagę, że w klasach można definiować metody, których
 nazwy są nazwami operatorów (np. +, -, /), dzięki
@@ -122,10 +121,9 @@ zapisywać wartości liczbowe należące do różnych dziedzin. Przykładowo: fr
 Rails rozszerza klasę Fixnum o metody będące nazwami jednostek czasu. Dzięki
 temu możemy napisać:
 
-```ruby
+code(ruby).
 1.hour + 5.minutes
 \#=&gt; 3900
-```
 
 Nie trzeba chyba podkreślać jak bardzo wpływa to na czytelność kodu!
 
@@ -140,12 +138,11 @@ Pozwala on na łatwe określanie grup obiektów o charakterze sekwencyjnym.
 
 Składnia przedziałów jest bardzo prosta:
 
-```ruby
+code(ruby).
 (1..10)
 \#=&gt; 1..10
 (1...10)
 \#=&gt; 1...10
-```
 
 Tworząc przedział podaje się dwie skrajne wartości otoczone nawiasami okrągłymi i oddzielone
 dwoma lub trzeba kropkami. Różnica w ilości kropek określa czy górny kres przedziału
@@ -157,12 +154,11 @@ powoduje zaalokowanie ilości pamięci odpowiadającej rozmiarowi przedziału.
 
 Metoda, która zamienia przedział na tablicę to **to\_a**:
 
-```ruby
+code(ruby).
 (1..10).to\_a
 \#=&gt; \[1, 2, 3, 4, 5, 6, 7, 8, 9, 10\]
 (1...10).to\_a
 \#=&gt; \[1, 2, 3, 4, 5, 6, 7, 8, 9\]
-```
 
 Istotną cechą przedziałów jest również to, że są one wykorzystywane *implicite*
 w operatorze indeksowania \[\], co pozwala z jednej strony pominąć przy indeksowaniu
@@ -194,30 +190,26 @@ podstawiana jest w miejsce nawiasów.
 Kod występujący w nawiasach nie musi ograniczać się do nazwy zmiennej -
 można stosować dowolne konstrukcje języka, a bloki tego rodzaju można zagnieżdżać:
 
-```ruby
+code(ruby).
 imie = "Ala"
 "\#{imie} to grzeczna dziewczynka"
 \#=&gt; "Ala to grzeczna dziewczynka"
-```
 
-```ruby
+code(ruby).
 imiona = \[ "Grześ", "Bartek", "Jacek" \]
 "Chłopcy: \#{imiona.join(" i ")} idą na spacer"
 \#=&gt; "Chłopcy: Grześ i Bartek i Jacek idą na spacer"
-```
 
-```ruby
+code(ruby).
 jeden = "1"
 dwa = "2"
 "\#{jeden + " \#{dwa} " }"
 \#=&gt; "1 2 "
-```
 
-```ruby
+code(ruby).
 jeden = "1"
 '\#{jeden}'
 \#=&gt; "\\\#{jeden}"
-```
 
 Oczywiście nie należy przesadzać ze stosowaniem tego rodzaju konstrukcji, gdyż
 powodują one, że kod staje się mało czytelny.
@@ -230,7 +222,7 @@ koniec łańcucha. Dodatkowo, jeśli słowo to poprzedzone jest znakiem '-',
 to przy ustalaniu końca łańcucha ignorowane są białe spacje, występujące
 przed tym słowem:
 
-```ruby
+code(ruby).
 wierszyk = &lt;&lt;END
 Siała Baba mak
 Nie wiedziała jak
@@ -238,7 +230,6 @@ Dziadek wiedział
 Nie powiedział
 A to było tak...
 END
-```
 
 Należy również zwrócić uwagę, że wewnątrz takiego długiego łańcucha
 dokonywane są podstawienia w wyrażeniach ujętych w nawiasy klamrowe `#{...}`.
@@ -249,7 +240,7 @@ Ponadto przy modyfikacjach łańcuch zajmuje ten sam obszar
 pamięci (o ile nie wzrasta jego długość). Dzięki temu operacje na łańcuchach są
 wydajne.
 
-```ruby
+code(ruby).
 str1 = "Pszczółka Maja"
 \#=&gt; "Pszczółka Maja"
 str1.object\_id
@@ -258,7 +249,6 @@ str1.sub!("M","m")
 \#=&gt; "Pszczółka maja"
 str.object\_id
 \#=&gt; -607662428
-```
 
 Metoda sub powoduje zastąpienie pierwszego podciągu identycznego z pierwszym argumentem,
 argumentem drugim. Występuje ona w dwóch wersjach: z wykrzyknikiem i bez.
@@ -314,7 +304,7 @@ w Ruby łańcuchy znaków - pomimo tego, że dwa łańcuchy znaków wyglądają 
 nie muszą być tym samym obiektem. Możemy się o tym przekonać wywołując metodę **object\_id**,
 która zwraca wewnętrzny identyfikator obiektu:
 
-```ruby
+code(ruby).
 s1 = :Krolis
 s2 = :Krolis
 str1 = "Alicja"
@@ -323,7 +313,6 @@ s1.object\_id  s2.object\_id
 \#=&gt; true
 str1.object\_id  str2.object\_id
 \#=&gt; false
-```
 
 W tym miejscu warto wspomnieć, że własność jednoznaczności obejmuje również
 liczby (ale tylko te, które są instancjami klasy `Fixnum`), a także
@@ -342,7 +331,7 @@ został użyty jako klucz tablicy asocjacyjnej, a następnie został zmodyfikowa
 to informacja ta nie zostanie odzwierciedlona w tablicy asocjacyjnej!
 Wartość przechowywana w tablicy będzie bowiem dostępna wyłącznie pod starą nazwą.
 
-```ruby
+code(ruby).
 key = "Jabłko"
 histogram\[key\] = 10
 key.sub<img src="
@@ -353,7 +342,6 @@ histogram\["Jabłko"\]
 \#=&gt; 10
 key
 \#=&gt; "Jabłka"
-```
 
 Uwaga!
 
@@ -387,7 +375,7 @@ na modłę obiektową.
 
 Dwa sposoby korzystania z wyrażeń regularnych ilustrują poniższe przykłady:
 
-```ruby
+code(ruby).
 name = ”Matz”
 name =∼ /(\[\[:lower:\]\]{2})/
 \#=&gt; 1
@@ -397,9 +385,8 @@ $1
 \#=&gt; ”at”
 $’
 \#=&gt; ”z”
-```
 
-```ruby
+code(ruby).
 re = Regexp.new(”(\[\[:lower:\]\]{2})”)
 md = re.match(name)
 \#=&gt; \#<MatchData:0xb7d41054>
@@ -409,7 +396,6 @@ md.value\_at 1
 \#=&gt; ”at”
 md.post\_match
 \#=&gt; ”z”
-```
 
 Wyrażenia regularne wykorzystywane w obu przykładach są oczywiście identyczne -
 dopasowują się one do dwóch małych liter. W pierwszym przykładzie zastosowana
@@ -444,11 +430,10 @@ również wyrażenie regularne. Aby odwołać się w *łańcuchu zastępującym*
 występujących w wyrażeniu, można skorzystać z perlowej składni, gdzie numer
 podgrupy poprzedzony jest *backslashem*:
 
-```ruby
+code(ruby).
 global\_truth = "Nikt nam nie wmowi, ze czarne to czarne a biale to biale"
 global\_truth.sub(/(\\w\*) a (\\w\*) to (\\w\*)/,"\\\\2 a \\\\3 to \\\\1")
 \#=&gt; "Nikt nam nie wmowi, ze czarne to biale a biale to czarne"
-```
 
 [Pełny opis klasy `Regexp`](http://www.ruby-doc.org/core/classes/Regexp.html)
 
@@ -471,12 +456,11 @@ przecinkiem wewnątrz nawiasów kwadratowych\*. Znacznie ciekawszym sposobem
 tworzenia tablic jest wykorzystanie bloku kodu, który pozwala zainicjować
 tablicę wartościami wyliczonymi na podstawie indeksu:
 
-```ruby
+code(ruby).
 a = \[ "zero", "one", "two", "three"\]
 \#=&gt; \[ "zero", "one", "two", "three"\]
 b = Array.new(5) {|i| i\*i}
 \#=&gt; \[0, 1, 4, 9, 16\]
-```
 
 Uwaga
 
@@ -491,7 +475,7 @@ ostatni element ma indeks -1, poprzedzający go -2, itd. Jeśli indeks wykracza
 poza zakres tablicy zwracana jest wartość `nil`. Aby odwołać się do obiektu o określonym
 indeksie stosujemy **operator indeksowania \[\]**:
 
-```ruby
+code(ruby).
 a = \[ "zero", "one", "two", "three"\]
 a\[0\]
 \#=&gt; "zero"
@@ -505,14 +489,13 @@ a\[-1\] = "trzy"
 \#=&gt; "trzy"
 a
 \#=&gt; \[ "zero", "one", "two", "trzy" \]
-```
 
 Tablice można również **indeksować zakresami**, wtedy zamiast pojedynczej wartości
 otrzymamy tablicę składającą się z elementów mieszczących się w zadanym zakresie.
 Jeśli zadany zakres i zakres poprawnych indeksów nie mają elementów wspólnych,
 zwracana jest tablica pusta.
 
-```ruby
+code(ruby).
 a = \[ "zero", "one", "two", "three"\]
 a\[0..2\]
 \#=&gt; \[ "zero", "one", "two" \]
@@ -522,14 +505,13 @@ a\[2..-1\]
 \#=&gt; \[ "two", "three" \]
 a\[10..20\]
 \#=&gt; \[\]
-```
 
 W tablicy można przechowywać obiekty dowolnego typu, nie wykluczając samych tablic
 Co więcej - w jednej tablicy można przechowywać inne tablice, tworząc tablice wielowymiarowe.
 Aby odwołać się do elementów takiej wielowymiarowej tablicy należy skorzystać
 wielokrotnie z operatora indeksowania:
 
-```ruby
+code(ruby).
 matrix = \[\[1,2,3\],\[3,4,5\],\[5,6,7\]\]
 matrix\[1\]
 \#=&gt; \[3, 4, 5\]
@@ -537,7 +519,6 @@ matrix\[1\]\[1\]
 \#=&gt; 4
 matrix\[1,1\]
 \#=&gt; \[\[3, 4, 5\]\]
-```
 
 Próba przekazania dwóch indeksów w jednym operatorze indeksowania spowodowała
 zwrócenie podtablicy tablicy `matrix`, a nie liczby 4, ponieważ ten zapis interpretowany
@@ -584,7 +565,7 @@ wykorzystania powyższych metod. Więcej przykładów można znaleźć oczywiśc
 
 #### Metody operatorowe
 
-```ruby
+code(ruby).
 \[ 1, 2, 3 \] + \[ 4, 5 \]
 \#=&gt; \[ 1, 2, 3, 4, 5 \]
 \[ 1, 2, 3 \] - \[ 1, 3 \]
@@ -592,11 +573,10 @@ wykorzystania powyższych metod. Więcej przykładów można znaleźć oczywiśc
 a = \[ 1, 2, 3 \]
 a &lt;&lt; 4
 \#=&gt; \[ 1, 2, 3, 4 \]
-```
 
 #### Metody blokowe
 
-```ruby
+code(ruby).
 zenskie = \[ "Janek", "Jozef", "Kasia", "Ania", "Wojtek" \].delete\_if {|name| name !~ /a$/ }
 \#=&gt; \["Kasia", "Ania"\]
 duza\_litera = \[ "ania", "kasia" \].collect{|name| name.capitalize }
@@ -606,11 +586,10 @@ literki = \[ "a", "b", "c" \].each{|l| puts l}
 \# b
 \# c
 \#=&gt; \["a", "b", "c" \]
-```
 
 #### Pozostałe metody
 
-```ruby
+code(ruby).
 \[\].empty?
 \#=&gt; true
 zawiera\_dwa = \[1,2,3\].include?(2)
@@ -629,7 +608,6 @@ macierz.sort
 \#=&gt; \[\[1,1\],\[1,2\],\[2,1\],\[2,2\]\]
 macierz.sort{|e1,e2| e1\[1\] == e2\[1\] ? e1\[0\] &lt;=&gt; e2\[0\] : e1\[1\] &lt;=&gt; e2\[1\]}
 \#=&gt; \[\[1, 1\], \[2, 1\], \[1, 2\], \[2, 2\]\]
-```
 
 Metoda `sort` wymaga nieco więcej uwagi. Wywołanie jej dla tablicy
 bez opcjonalnego bloku, powoduje posortowanie elementów wg *naturalnego porządku*,
@@ -646,7 +624,7 @@ blok, w który określamy interesujący nas porządek.
 Ten sam mechanizm może być zastosowany, jeśli w tablicy znajdują się obiekty typów,
 które są ze sobą nieporównywalne:
 
-```ruby
+code(ruby).
 dziwna1 = \[ 2, 3, "a" \].sort
 \# ArgumentError: comparison of String with 2 failed...
 dziwna2 = \[ 3, 2, "a" \].sort do |a,b|
@@ -655,7 +633,6 @@ v2 = b.is\_a?(String) ? b.size : b
 v1 &lt;=&gt; v2
 end
 \#=&gt; \["a", 2, 3\]
-```
 
 Innym rozwiązaniem tego problemu jest zastosowanie **mechanizmu koercji** (zobacz `coerce`
 w [dokumentacji języka](http://www.ruby-doc.org/core/)).
@@ -672,7 +649,7 @@ wartości odbywa się w taki sam sposób jak w przypadku tablic (nazwa tablicy,
 po której następuje, ujęty w nawiasy kwadratowe, klucz). W przypadku odwołania
 do klucza, który **nie znajduje się** w tablicy domyślnie zwracana jest wartość **`nil`**.
 
-```ruby
+code(ruby).
 hash = { "jeden" =&gt; 1, "dwa" =&gt; 2, "trzy" =&gt; 3 }
 hash\["jeden"\]
 \#=&gt; 1
@@ -681,7 +658,6 @@ hash\["cztery"\]
 hash\["cztery"\] = 4
 hash\["cztery"\]
 \#=&gt; 4
-```
 
 Domyślna wartość zwracana w przypadku braku odpowiedniego klucza,
 może być jednak zastąpiona, jeśli do konstruktora tablicy asocjacyjnej
@@ -691,14 +667,13 @@ Takie rozwiązanie wykorzystywane jest często w przypadku, gdy tablicę
 asocjacyjną wykorzystuje się jako sumator wystąpień wartości, np. w programie
 do zliczania wystąpień słów w tekście.
 
-```ruby
+code(ruby).
 histogram = Hash.new(0)
 histogram\["Ala"\]
 \#=&gt; 0
 histogram\["Ala"\] += 1
 histogram\["Ala"\]
 \#=&gt; 1
-```
 
 Obiekty, które występują jako klucze porównywane są za pomocą metody `eql?`.
 Jeśli modyfikujemy tę metodę w naszej klasie, powinniśmy również zadbać
@@ -712,16 +687,14 @@ wywołania. Ze względu na jego powszechność, w wywołaniach, w których param
 jest tablica asocjacyjna, można pominąć nawiasy, o ile nie prowadzi to do
 niejednoznaczności.
 
-```ruby
+code(ruby).
 has\_many(:src\_links, :class\_name =&gt; "Link", :foreign\_key =&gt; "src\_id")
-```
 
 W powyższym wywołaniu parametr drugi i trzeci zostaną połączone w jedną
 tablicę asocjacyjną. Jest to *de facto* skrót dla poniższego zapisu:
 
-```ruby
+code(ruby).
 has\_many(:src\_links, {:class\_name =&gt; "Link", :foreign\_key =&gt; "src\_id"})
-```
 
 Podobnie jak zwykłe tablice, tablice asocjacyjne posiadają wiele wbudowanych
 metod. Wśród nich na szczególną uwagę zasługują:
@@ -745,7 +718,7 @@ metod. Wśród nich na szczególną uwagę zasługują:
 
 Przykłady wykorzystania powyższych metod przedstawione są poniżej.
 
-```ruby
+code(ruby).
 hash = { "jeden" =&gt; 1, "dwa" =&gt; 2, "trzy" =&gt; 3}
 hash.has\_key?("jeden")
 \#=&gt; true
@@ -768,7 +741,6 @@ hash.merge({ "jeden" =&gt; "I", "dwa" =&gt; "II", "cztery" =&gt; "IV"})
 \#=&gt; {"jeden" =&gt; "I", "dwa" =&gt; "II", "cztery" =&gt; "IV", "trzy" =&gt; 3}
 hash.select{|key,value| key.match(/d/)}
 \#=&gt; \[\["jeden",1\], \["dwa",2\]\]
-```
 
 [Pełny opis klasy `Hash`](http://www.ruby-doc.org/core/classes/Hash.html)
 
@@ -789,7 +761,7 @@ jest dla wszystkich obiektów, można sprawdzić, czy są one wartością pustą
 Jedyny obiekt, który zwraca wartość `true` dla tego wywołania, to oczywiście
 wartość pusta:
 
-```ruby
+code(ruby).
 a = ""
 a.nil?
 \#=&gt; false
@@ -802,7 +774,6 @@ a.nil?
 a = nil
 a.nil?
 \#=&gt; true
-```
 
 Testowanie tożsamości z wartością pustą pozwala uchronić nas przed sytuacjami, kiedy
 do jakiejś zmiennej została przypisana wartość pusta (np. w wyniku wywołania funkcji),
@@ -811,16 +782,15 @@ Tym niemniej testowanie metodą `nil?` nie chroni przed sytuacjami, gdy jakaś \
 nie została w ogóle zainicjowana.\* Próba sprawdzenia czy niezainicjowana zmienna
 posiada wartość pustą spowoduje wygenerowanie błędu:
 
-```ruby
+code(ruby).
 zzz.nil?
 \# NameError: undefined local variable or method \`zzz'
-```
 
 Aby uchronić się przed tego rodzaju sytuacją można skorzystać z funkcji **`defined?`**,
 która zwraca wartość niepustą (jest to informacja o typie zmiennej/stałej),
 jeśli dana zmienna została zainicjowana:
 
-```ruby
+code(ruby).
 defined? a
 \#=&gt; nil
 a = 10
@@ -831,14 +801,13 @@ defined? Z
 Z = 10
 defined? Z
 \#=&gt; "constant"
-```
 
 Wartym odnotowania faktem jest też to, że
 przeciwieństwie do wielu innych języków skryptowych, w Ruby \*tylko `false` i `nil`
 są traktowane jako fałsz\* w wyrażeniach logicznych. Pusta tablica, wartość 0 czy
 pusty łańcuch ewaluowane są jako prawda.
 
-```ruby
+code(ruby).
 if false or nil
 "True"
 else
@@ -851,7 +820,6 @@ else
 "False"
 end
 \#=&gt; "True"
-```
 
 Dodatkowo, jeśli w wyrażeniu logicznym pojawi się łańcuch, generowane jest ostrzeżenie.
 

@@ -52,17 +52,15 @@ Praca na serwerze
 
 Po uzyskaniu dostępu do wybranego serwera (Prometheus, Ares, Athena), można się na niego zalogować za pomocą SSH, np. do serwera Ares można się połączyć wpisując:
 
-```bash
+code(bash).
 $ ssh &lt;mojlogin&gt;@ares.cyfronet.pl
-```
 
 Oczywiście `<mojlogin>` zamieniamy na nasz login w systemie PLGrid.
 
 Po zalogowaniu się na serwer musimy uświadomić sobie, że jesteśmy zalogowanie na maszynie dostępowej. Będzie się to objawiało następującym komunikatem w linii poleceń
 
-```bash
+code(bash).
 $ &lt;mojlogin&gt;@login01:~/
-```
 
 Czyli maszyna, na której się znajdujemy nazywa się np. `login01`.
 
@@ -102,21 +100,18 @@ Jeśli jednak potrzebujemy uruchomić wiele eksperymentów, a wiemy już że nas
 
 Przykładowe uruchomienie sesji wygląda następująco:
 
-```bash
+code(bash).
 $ srun -A plgnlp-gpu -p plgrid-gpu-v100 --gres=gpu:1 -N 1 -n 1 --ntasks-per-node=1 --mem=32GB -t 24:00:00 --pty /bin/bash -l
-```
 
 Dla komputera Athena, polecenie jest następujące (dochodzi nazwa kolejki do nazwy grantu):
 
-```bash
+code(bash).
 $ srun -A plgexaile2-gpu-a100 -p plgrid-gpu-a100 --gres=gpu:1 -N 1 -n 1 --ntasks-per-node=1 --mem=64GB -t 24:00:00 --pty /bin/bash -l
-```
 
 Dla komputera Helios, polecenie jest następujące:
 
-```bash
+code(bash).
 $ srun -A plgexaile2-gpu-gh200 -p plgrid-gpu-gh200 --gres=gpu:1 -N 1 -n 1 --ntasks-per-node=1 --mem=64GB -t 24:00:00 --pty /bin/bash -l
-```
 
 gdzie:
 
@@ -133,9 +128,8 @@ gdzie:
 Uruchomienie polecenia nie zawsze powoduje natychmiastowe uzyskanie dostępu do węzła. Jeśli czekamy długo, możemy spróbować zmniejszyć jeden lub wiele parametrów.
 Zwykle uruchamianie na jednym węźle, z jedną kartą GPU jest jednak dość szybko realizowane. Jeśli jednak czekamy długo, możemy wpisać:
 
-```bash
+code(bash).
 $ squeue
-```
 
 Spowoduje ono wyświetlenie wszystkich uruchomionych zadań w ramach grantów, do których mamy dostęp.
 
@@ -158,18 +152,16 @@ Dlatego zazwyczaj, w celu uzyskania powtarzalności eksperymentów, ładujemy pr
 
 Dla eksperymentów NLP na Aresie polecane jest załadowanie i instalację następujących modułów:
 
-```bash
+code(bash).
 $ module load python/3.9.6-gcccore-11.2.0
 $ module load cuda/11.6.0
 $ module load cudnn/8.4.1.50-cuda-11.6.0
 $ pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
-```
 
 Poza tym warto zrobić sobie środowisko virtualenv, aby móc instalować własne biblioteki pythonowe. Pamiętemy zatem żeby po każdym zalogowaniu na węzeł aktywować to środowisko, np.:
 
-```bash
+code(bash).
 $ source ~/scratch/python-3.8.6/bin/activate
-```
 
 Po wprowadzeniu tych poleceń możemy już uruchamiać swoje programy napisane w Pythonie, z dokładnie określonym zestawem bibliotek.
 

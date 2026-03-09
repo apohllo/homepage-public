@@ -29,9 +29,8 @@ są indeksowane od 0 do n-1, gdzie n jest wymiarem danego stopnia tablicy.
 
 #### 22.1
 
-```lisp
+code(lisp).
 (make-array '(2 3)) =&gt; \#2a((nil nil nil)(nil nil nil))
-```
 
 ### 22.2 aref
 
@@ -42,12 +41,11 @@ równa stopniowi (ilości wymiarów) tablicy. W połączeniu z instrukcją setf,
 zawartość tablicy.
 h4. 22.2
 
-```lisp
+code(lisp).
 (setq tablica (make-array '(2 3)) =&gt; \#2a((nil nil nil)(nil nil nil))
 (aref tablica 0 0) =&gt; nil
 (setf (aref tablica 0 0) 1) =&gt; nil
 (aref tablica 0 0) =&gt; 1
-```
 
 ### 22.3 array-rank
 
@@ -56,9 +54,8 @@ Ma ona postać (array-rank table).
 
 #### 22.3
 
-```lisp
+code(lisp).
 (array-rank (make-array '(4 5)) =&gt; 2
-```
 
 ### 22.4 array-dimension
 
@@ -69,10 +66,9 @@ danej tablicy.
 
 #### 22.4
 
-```lisp
+code(lisp).
 (array-dimension (make-array '(4 5)) 0)
 =&gt; 4
-```
 
 Jeśli instrukcję tę wywołamy nie podając numeru wymiaru, to otrzymamy listę zawierającą poszczególne
 wymiary badanej tablicy.

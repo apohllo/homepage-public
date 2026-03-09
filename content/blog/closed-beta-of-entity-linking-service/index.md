@@ -17,18 +17,16 @@ Still, the output might be pretty valuable, e.g. for indexing.
 
 The API might be tested as follows (Warsaw is the capital of Poland):
 
-```bash
+code(bash).
 curl -X POST -d 'text=Warszawa jest stolicą Polski.' http://klon.wzks.uj.edu.pl/asterion/annotator/annotate.json -u 'login:password' -basic
-```
 
 The output will look as follows:
-```
+code.
 {[concepts]()
 \[
 {[id](6605,"name":"Warszawa","confidence":0.21689995068611942,"start":0,"end":7}),
 {[id](5664,"name":"Stolica) Polski",[confidence](0.21689995068611942,"start":14,"end":27})
 \]
 }
-```
 
 So far only Polish is supported, but English will be provided soon.

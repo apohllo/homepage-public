@@ -30,7 +30,7 @@ dla predykatu eq.
 
 #### 18.1
 
-```lisp
+code(lisp).
 (eq 'a 'a) =&gt; t
 (eq 'a 'b) =&gt; nil
 (eq 1 1) =&gt; nil
@@ -40,7 +40,6 @@ dla predykatu eq.
 (eq a b) =&gt; t
 (setq b '(1 2 3)) =&gt; (1 2 3)
 (eq a b) =&gt; nil
-```
 
 ### 18.2 eql
 
@@ -50,7 +49,7 @@ Poza tą własnością nie różni się niczym od predykatu eq.
 
 #### 18.2
 
-```lisp
+code(lisp).
 (eql 'a 'a) =&gt; t
 (eql 'a 'b) =&gt; nil
 (eql 1 1) =&gt; t
@@ -60,7 +59,6 @@ Poza tą własnością nie różni się niczym od predykatu eq.
 (eql a b) =&gt; t
 (setq b '(1 2 3)) =&gt; (1 2 3)
 (eql a b) =&gt; nil
-```
 
 ### 18.3 equal
 
@@ -72,13 +70,12 @@ wolniejszy od eq, dlatego do porównywania symboli znacznie lepisj jest używać
 
 #### 18.3
 
-```lisp
+code(lisp).
 (setq a '(1 2 3)) =&gt; (1 2 3)
 (setq b a) =&gt; (1 2 3)
 (equal a b) =&gt; t
 (setq b '(1 2 3)) =&gt; (1 2 3)
 (equal a b) =&gt; t
-```
 
 ### 18.4 equalp
 
@@ -88,10 +85,9 @@ liter), to predykat ten zwraca wartość prawda.
 
 #### 18.4
 
-```lisp
+code(lisp).
 (equal "Ala ma kota" "Ala Ma Kota") =&gt; nil
 (equal "Ala ma kota" "Ala Ma Kota") =&gt; t
-```
 
 ### 18.5 =
 
@@ -102,11 +98,10 @@ w szczególności symboli.
 
 #### 18.5
 
-```lisp
+code(lisp).
 (= 1 2) =&gt; nil
 (= 1 1.0) =&gt; t
 (= 1/2 0.5) =&gt; t
 (= 'a 'a) =&gt; nil
-```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 17](/dydaktyka/lisp/lekcja-17) | [Lekcja 19](/dydaktyka/lisp/lekcja-19)

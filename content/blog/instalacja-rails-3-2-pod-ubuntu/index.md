@@ -20,7 +20,7 @@ Postępujemy zgodnie z [instrukcją instalacji Rubiego](/blog/instalacja-rubiego
 
 W konsoli wpisujemy poleceni instalacji Railsów `gem install rails`:
 
-```bash
+code(bash).
 $ gem install rails
 Fetching: i18n-0.6.0.gem (100%)
 Fetching: multi\_json-1.0.4.gem (100%)
@@ -34,7 +34,6 @@ Fetching: journey-1.0.1.gem (100%)
 Fetching: hike-1.2.1.gem (100%)
 Fetching: tilt-1.3.3.gem (100%)
 ...
-```
 
 Na początku wydaje się, że polecenie zamarło, ale trzeba trochę odczekać.
 Jeśli wynik jest inny niż powyższy, należy dokładnie przeczytać komunikat błędu.
@@ -46,15 +45,14 @@ Ze względu na dodanie w wersji 3.1 [asset pipline](http://guides.rubyonrails.or
 biblioteki pozwalającej na uruchamianie Javascriptu po stronie serwera. Istnieje kilka opcji,
 ale instalacja gemu `therubyracer` powinna przebiegać bez problemów:
 
-```bash
+code(bash).
 $ gem install therubyracer
-```
 
 4. Wygenerowanie przykładowej aplikacji
 
 Po instalacji gemu therubyracer możemy wygenerować nową aplikację:
 
-```bash
+code(bash).
 $ rails new library
 create
 create README.rdoc
@@ -71,20 +69,18 @@ create app/helpers/application\_helper.rb
 create app/mailers
 create app/models
 ...
-```
 
 5. Konfiguracja aplikacji
 
 Pomimo tego, że aplikacja została wygenerowana pomyślnie konieczne jest jeszcze wskazanie biblioteki
 używanej do obsługi Javascriptu. W tym celu w pliku **Gemfile** w katalogu głównym aplikacji musimy dodać następującą linijkę
 
-```ruby
+code(ruby).
 gem "therubyracer"
-```
 
 Następnie wywołujemy komendę **bundle** w katalogu aplikacji:
 
-```bash
+code(bash).
 $ cd library
 $ bundle
 Using rake (0.9.2.2)
@@ -97,13 +93,12 @@ Using erubis (2.7.0)
 Using journey (1.0.1)
 Using rack (1.4.1)
 ...
-```
 
 5. Dodanie przykładowej funkcjonalności
 
 Na koniec możemy wygenerować przykładowy scaffold, żeby czy wszystko działa jak należy:
 
-```bash
+code(bash).
 $ rails g scaffold author name:string surname:string
 invoke active\_record
 create db/migrate/20120205195252\_create\_authors.rb
@@ -126,7 +121,6 @@ $ rails s
 \[2012-02-05 20:54:10\] INFO WEBrick 1.3.1
 \[2012-02-05 20:54:10\] INFO ruby 1.9.3 (2011-10-30) \[i686-linux\]
 \[2012-02-05 20:54:10\] INFO WEBrick::HTTPServer\#start: pid=21730 port=3000
-```
 
 Jeśli w przeglądarce wejdziemy po adres `http://localhost:3000/authors` powinniśmy zobaczyć następującą treść:
 

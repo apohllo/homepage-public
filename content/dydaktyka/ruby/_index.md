@@ -26,10 +26,9 @@ bibliotek, uświadomimy sobie, że Ruby byłby jeszcze lepszym
 Ta sekcja poświęcona jest właśnie językowi *Ruby*, platformie *Ruby on Rails*
 oraz projektowi *JRuby*.
 
-```ruby
+code(ruby).
 class Ruby
 def self.like\_no\_other?
 true
 end
 end
-```

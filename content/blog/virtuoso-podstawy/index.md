@@ -31,7 +31,7 @@ z instalacją nie powinno być problemu.
 Zainstalowane ze źródeł Virtuosu (przynajmniej pod Gentoo) nie posiada żadnych plików konfiguracyjnych, dlatego musimy przygotować sami minimalną konfigurację.
 Może ona wyglądać następująco:
 
-```
+code.
 \[Database\]
 DatabaseFile=/var/lib/virtuoso/db/virtuoso.db
 TransactionFile=/var/lib/virtuoso/db/virtuoso.trx
@@ -40,7 +40,6 @@ ErrorLogFile=/var/lib/virtuoso/db/virtuoso.log
 DirsAllowed=/path/to/dir
 \[HTTPServer\]
 ServerPort=8080
-```
 
 Konfigurację tę możemy umieścić np. w pliku **`/etc/virtuoso.ini`**.
 
@@ -54,7 +53,7 @@ Służy do tego opcja `+configfile`.
 Dodatkowo przy pierwszym uruchomieniu możemy zażądać, aby serwer nie działał w tle (opcja `+foreground`),
 dzięki czemu w razie problemów będziemy mogli zobaczyć co jest nie tak.
 
-```bash
+code(bash).
 $ virtuoso-t +configfile /etc/virtuoso.ini +foreground
 Tue Apr 05 2011
 12:23:07 INFO: OpenLink Virtuoso Universal Server
@@ -69,14 +68,12 @@ Tue Apr 05 2011
 12:23:13 INFO: Checkpoint finished, log reused
 12:23:15 INFO: HTTP server online at 8080
 12:23:15 INFO: Server online at 1111 (pid 15156)
-```
 
 Kiedy uruchomimy serwer, możemy sprawdzić go w działaniu wykorzystując polecenie **`isql-v`**. Otwiera ono interaktywną sesję pracy z serwerem:
 
-```bash
+code(bash).
 $ isql-v
 SQL&gt; sparql select \* where {?s ?p ?o} limit 10;
-```
 
 Powłoka klienta pozwala na bezpośrednie przeglądanie bazy danych, na której działa Virtuoso, za pomocą zwykłych poleceń SQL-owych. Dlatego
 zapytania SPARQL-owe muszą być poprzedzone słowem kluczowym SPARQL. Przykładowe zapytanie przedstawione jest powyżej. Niemniej dla świeżej
@@ -102,12 +99,11 @@ Po ściągnięciu pliku, wskazanego w drugim punkcie, zapisujemy go w aktualnym 
 następnie w tym samym katalogu wywołujemy polecenie `isql-v`.
 Następnie w konsoli SQL wywołujemy polecenie `load rdfloader.sql`:
 
-```bash
+code(bash).
 $ ls
 rdfloader.sql
 $ isql-v
 SQL&gt; load rdfloader.sql;
-```
 
 Jeśli za kilka dni będziemy chcieli załadować kolejną paczkę danych, to procedury tej nie trzeba będzie już powtarzać.
 
@@ -123,39 +119,35 @@ się do nich niezależnie za pomocą klauzuli `WHERE`. Warto wybrać nazwę wska
 
 Przykładowe polecenie może wyglądać następująco:
 
-```
+code.
 SQL&gt; ld\_dir('/home/user/rdf/dbpedia','\*.n3','http://dbpedia.org');
-```
 
 Wbrew oczekiwaniom polecenie to nie załaduje od razu danych do bazy. Dopiero kolejne polecenie `df_loader_run`, spowoduje załadowanie danych.
 Przed jego wykonaniem należy uzbroić się w cierpliwość, gdyż może zająć to całkiem sporo czasu.
 
-```
+code.
 SQL&gt; rdf\_loader\_run ();
-```
 
 ### Przykładowe użycie
 
 Jeśli wszystko przebiegło poprawnie, to powinniśmy mieć możliwość korzystania z załadowanych danych poprzez SPARQL end-point.
 Możemy go najpierw przetestować w konsoli `isql-v`:
 
-```
+code.
 sparql select \* from &lt;http://dbpedia.org&gt; where {?s ?p ?o} limit 5;
 http://dbpedia.org/resource/Autism http://www.w3.org/1999/02/22-rdf-syntax-ns\#type http://www.w3.org/2002/07/owl\#Thing
 http://dbpedia.org/resource/Alabama http://www.w3.org/1999/02/22-rdf-syntax-ns\#type http://www.w3.org/2002/07/owl\#Thing
 http://dbpedia.org/resource/Aristotle http://www.w3.org/1999/02/22-rdf-syntax-ns\#type http://www.w3.org/2002/07/owl\#Thing
 http://dbpedia.org/resource/Academy\_Award http://www.w3.org/1999/02/22-rdf-syntax-ns\#type http://www.w3.org/2002/07/owl\#Thing
 http://dbpedia.org/resource/Actrius http://www.w3.org/1999/02/22-rdf-syntax-ns\#type http://www.w3.org/2002/07/owl\#Thing
-```
 
 Innym sposobem dostępu jest wykorzystanie wbudowanego serwera WWW. Otwieramy stronę pod adresem <http://localhost:8080/sparql> i
 od razu możemy zadawać zapytania SPARQL.
 
 Możemy również przetestować działanie end-pointu z poziomu jakiegoś języka programowania, np. Rubiego:
 
-```ruby
+code(ruby).
 require 'sparql/client'
 client = SPARQL::Client.new("http://localhost:8080/sparql")
 results = client.query("select \* where {?subject ?predicate ?object} limit 5")
 results.each{|r| puts "\#{r.subject} \#{r.predicate} \#{r.object}"}
-```

@@ -30,10 +30,9 @@ działa on jak predykat.
 
 #### 20.1
 
-```lisp
+code(lisp).
 (member 'zenek '(franek zenek alfons)) =&gt; (zenek alfons)
 (member 'zenek '(franek alfons)) =&gt; nil
-```
 
 ### 20.2 remove
 
@@ -45,11 +44,10 @@ lista nie jest modyfikowana.
 
 #### 20.2
 
-```lisp
+code(lisp).
 (setq zbior-osob '(zenek franek alfons)) =&gt; (zenek franek alfons)
 (remove 'zenek zbior-osob) =&gt; (franek alfons)
 zbior-osob =&gt; (zenek franek alfons)
-```
 
 ### 20.3 union
 
@@ -58,11 +56,10 @@ lub do drugiego. Ma ona postać (union set1 set2).
 
 #### 20.3
 
-```lisp
+code(lisp).
 (setq zbiora '(1 2 3)) =&gt; (1 2 3)
 (setq zbiorb '(3 4 5)) =&gt; (3 4 5)
 (union zbiora zbiorb) =&gt; (1 2 3 4 5)
-```
 
 ### 20.4 adjoin
 
@@ -71,10 +68,9 @@ samego elementu. Zwracana jest lista będąca nowym zbiorem. Ma ona postać (adj
 
 #### 20.4
 
-```lisp
+code(lisp).
 (adjoin 1 '(1 2 3)) =&gt; (1 2 3)
 (adjoin 4 '(1 2 3)) =&gt; (4 1 2 3)
-```
 
 Pamiętać należy, że powyższe funkcjie nie modyfikują wejściowych struktur oraz, że zbiory są
 nieuporządkowne.

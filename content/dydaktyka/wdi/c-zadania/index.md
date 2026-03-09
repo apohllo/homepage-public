@@ -14,52 +14,44 @@ Kompilacja programu
 
 1. Utwórz katalog zadania:
 
-```bash
+code(bash).
 $ mkdir zadania
-```
 
 2. Zmień katalog na zadania:
 
-```bash
+code(bash).
 $ cd zadania
-```
 
 3. Utwórz katalog, którego nazwa jest taka jak Twoje nazwisko, np. pohl:
 
-```bash
+code(bash).
 $ mkdir pohl
-```
 
 4. Przejdź do utworzonego katalogu
 
-```bash
+code(bash).
 $ cd pohl
-```
 
 5. Pobierz plik [witaj\_epi.c](/texts/witaj_epi.c) do katalogu `zadania/<twoje_nazwisko>`:
 
-```bash
+code(bash).
 $ wget http://apohllo.pl/texts/witaj\_epi.c
-```
 
 6. Sprawdź czy plik znajduje się w katalogu:
 
-```bash
+code(bash).
 $ ls
 witaj\_epi.c
-```
 
 7. Skompiluj program:
 
-```bash
+code(bash).
 $ gcc -o witaj\_epi witaj\_epi.c
-```
 
 8. Uruchom program:
 
-```bash
+code(bash).
 $ ./witaj\_epi
-```
 
 Modyfikacja programu
 --------------------
@@ -104,9 +96,8 @@ Równanie kwadratowe
 
 3. Skompiluj program za pomocą polecenia (zwróć uwagę na opcję "-lm" na końcu polecenia):
 
-```bash
+code(bash).
 $ gcc -o rownanie\_kwadratowe rownanie\_kwadratowe.c -lm
-```
 
 4. Sprawdź działanie dla następujących przykładów:
 

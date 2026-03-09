@@ -61,16 +61,15 @@ przez co skazani jesteśmy na budowanie gema ze źródeł, co wcale nie jest tak
 gemów zdefiniowana jest z użyciem jewelera, który jest niekompatybilny z Rubim 1.9). Dlatego najprościej
 jest ściągnąć [mojego brancha 1\_7\_0](http://github.com/apohllo/ActiveRDF/tree/1_7_0)
 
-```bash
+code(bash).
 $ git clone git://github.com/apohllo/ActiveRDF.git
 ...
 $ cd ActiveRDF
-```
 
 Niestety nie obejdzie się bez użycia Rubiego 1.8 do zbudowania gema. Ja korzystam z Gentoo, dlatego
 mogę zmienić wersję wykonując polecenie:
 
-```bash
+code(bash).
 $ sudo eselect ruby set 1
 Successfully switched to profile:
 ruby18
@@ -90,7 +89,6 @@ $ sudo eselect ruby set 2
 Successfully switched to profile:
 ruby19
 $ sudo gem install pkg/activerdf\_net7-1.7.0.gem
-```
 
 Można również skorzystać z [rvm](http://rvm.beginrescueend.com/), ale nie będę tego opisywał w szczegółach.
 
@@ -98,7 +96,7 @@ Kiedy mamy już zbudowany i zainstalowany gem **activerdf** w wersji 1.7.0 musim
 odpowiedni adapter RDF. Ponieważ Musicbrainz eksponuje [sparql endpoint](http://dbtune.org/musicbrainz/sparql),
 musimy doinstalować właśnie ten adapter:
 
-```bash
+code(bash).
 $ cd activerdf-sparql/
 $ gem build activerdf-sparql.gemspec
 WARNING: no email specified
@@ -111,7 +109,6 @@ Version: 1.3.6
 File: activerdf-sparql-1.3.6.gem
 $ sudo gem install activerdf-sparql-1.3.6.gem
 ...
-```
 
 W tej chwili jesteśmy już w pełni wyposażeni aby korzystać z ActiveRDF w najnowszej wersji w Rubim 1.9
 
@@ -124,34 +121,31 @@ przez aktualny adapter ActiveRDF. Najwyraźniej jednak standard SPARQL staje si�
 nie ma zbyt wielu różnic pomiędzy poszczególnymi implementacjami, dzięki czemu można wykorzystać np.
 implementację dla serwera Virtuoso.
 
-```ruby
+code(ruby).
 require 'active\_rdf'
 include ActiveRDF
 ConnectionPool.add(:type =&gt; :sparql, :url =&gt; 'http://dbtune.org/musicbrainz/sparql', :engine =&gt; :virtuoso)
-```
 
 Powyższy kod tworzy połączenie z ontologią Musicbrainz. Następnie rejestrujemy najistotniejsze
 przestrzenie nazw (FOAF:http://www.foaf-project.org/, oraz MusicOntology:http://musicontology.com/):
 
-```ruby
+code(ruby).
 ActiveRDF::Namespace.register :foaf, 'http://xmlns.com/foaf/0.1/'
 ActiveRDF::Namespace.register :mo, 'http://purl.org/ontology/mo/'
-```
 
 W zasadzie w tym momencie moglibyśmy już przeglądać zawartość Musicbrainza, ale jest jeszcze jeden
 haczyk - otóż najwyraźniej serwer D2R nie radzi sobie z zapytaniami, w których explicite podane są
 typy atrybutów (np. dla łańcucha znaków). Dlatego też musimy ustawić zmienną globalną (sic!)
 `$activerdf_without_datatype` na `true`:
 
-```ruby
+code(ruby).
 $activerdf\_without\_datatype = true
-```
 
 Mam nadzieję, że w kolejnych wersjach ActiveRDF można będzie zrobić to w bardziej cywilizowany sposób.
 Tak, czy owak, w tej chwili możemy już przeglądać szczegółowe informacje na temat muzyków, zespołów i innych, np.
 W teorii wygląd prosto, ale w praktyce (ze względu na rozproszony charakter wiedzy), sprawy się komplikują:
 
-```ruby
+code(ruby).
 sting = ActiveRDF::Query.new.select(:x).where(:x, FOAF::name, "Sting").execute\[0\]
 sting.foaf::name.first
 \#=&gt; "Sting"
@@ -159,7 +153,6 @@ groups = ActiveRDF::Query.new.select(:x).where(:x, FOAF::member, sting).execute
 groups.each{|g| puts g.foaf::name.first}
 Strontium 90
 The Police
-```
 
 W powyższym przykładzie z bazy pobieram zasób, który reprezentuje Stinga. Następnie odpytujemy się o jego
 "nazwę" - i tutaj właśnie pierwsza niespodzianka, bo musimy dla tej nazwy (które też jest zasobem) wywołać
@@ -172,12 +165,11 @@ dobieramy się tak jak wcześniej.
 
 Na koniec pobierzemy informacje o zarejestrowanych koncertach, w których Sting był wiodącym wokalistą:
 
-```ruby
+code(ruby).
 performances = ActiveRDF::Query.new.select(:x).where(:x, MO::lead\_singer, sting).execute
 performances.each{|g| puts g.label}
 \#=&gt; Sting performing (recorded on album Why Don't You Answer?)
 \#=&gt; Sting performing (recorded on album Zenyattà Mondatta)
-```
 
 Jak widać powyżej, w bazie widnieją tylko informacje o dwóch zarejestrowanych koncertach.
 

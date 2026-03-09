@@ -40,9 +40,8 @@ no i wykorzystanie biblioteki readline pozwala używać klawisze specjalne w nor
 
 Dla wszystkich zainteresowanych - kod może być pobrany z [github.com/apohllo/cyc-console](http://github.com/apohllo/cyc-console) lub z wykorzystaniem Rubygems:
 
-```bash
+code(bash).
 $ sudo gem install apohllo-cyc-console
-```
 
 (Od [wersji 0.0.5](/blog/cyc-console-0-0-5) wystarczy wpisać `sudo gem install cyc-console`).
 
