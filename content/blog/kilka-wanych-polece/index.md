@@ -17,18 +17,20 @@ GPG error - Debian/Ubuntu
 
 Pobranie klucza GPG z serwera i dodanie go do apt-get-a:
 
-code(bash).
+```bash
 $ sudo gpg --keyserver subkeys.pgp.net --recv 7D2C7A23BF810CD5
 $ sudo gpg --export -~~armor 7D2C7A23BF810CD5 | sudo apt-key add~~
+```
 
 PgUp/PgDown w historii poleceń
 ------------------------------
 
 W Debianie/Ubuntu wystarczy w pliku `/etc/inputrc` odkomentować linijki (w Gentoo standardowo włączone):
 
-code.
+```
 [\\e\[A]() history-search-backward
 [\\e\[B]() history-search-forward
+```
 
 Kolory znak zachęty z gitem
 ---------------------------
@@ -36,7 +38,7 @@ Kolory znak zachęty z gitem
 Dzięki poniższym poleceniom, znak zachęty w Linuksie jest kolorowy oraz posiada dodatkowe informacje dla katalogów zawierających repozytorium Git.
 Należy wrzucić do `~/.bash_profile`
 
-code.
+```
 parse\_git\_branch ()
 {
 if git rev-parse --git-dir &gt;/dev/null 2&gt;&1
@@ -64,3 +66,4 @@ fi
 echo -ne $color
 }
 PS1='\\\[\\033\[01;32m\\\]\\u@\\h\\\[\\033\[01;34m\\\] \\w\\\[$(branch\_color)\\\]$(parse\_git\_branch) \\\[\\033\[01;34m\\\]\\$\\\[\\033\[00m\\\] '
+```
