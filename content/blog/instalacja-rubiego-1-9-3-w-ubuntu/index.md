@@ -37,11 +37,7 @@ $ source /home/user/.profile
 $ rvm help
 ```
 
-    [![Build Status](https://secure.travis-ci.org/mpapis/rvm.png)](http://travis-ci.org/mpapis/rvm)
-    = rvm
-    * http://github.com/wayneeseguin/rvm
-    == DESCRIPTION:
-    ...
+CODEBLOCK\_PLACEHOLDER\_1
 
 Jeśli nie widzimy powyższych komunikatów, znaczy to, że instalacja się nie powiodła! Należy przeczytać uważnie komunikat i sprawdzić co jest nie tak.
 

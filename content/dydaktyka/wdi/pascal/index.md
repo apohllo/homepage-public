@@ -288,9 +288,7 @@ pozwala wczytać wartość wprowadzoną z klawiatury do zmiennej.
 
 Przykładowe wykonanie programu mogłoby wyglądać następująco:
 
-    Wprowadź rok: 2000
-    W roku 2000 jest 366 dni.
-    Luty ma w tym roku 29 dni.
+CODEBLOCK\_PLACEHOLDER\_1
 
 **Instrukcja selekcji**
 
@@ -340,8 +338,7 @@ do opisywania niektórych typów znaków znajdujących się w zmiennej *znak*.
 
 Przykładowe wykonanie programu mogłoby wyglądać następująco:
 
-    Wprowadź znak: .
-    znak przestankowy
+CODEBLOCK\_PLACEHOLDER\_2
 
 ### Pętle
 
@@ -409,13 +406,7 @@ można zakończyć wprowadzając sekwencję Ctrl+D).
 
 Przykładowe wykonanie programu mogłoby wyglądać następująco:
 
-    a
-    a
-    1
-    1
-    g
-    g
-    [Ctrl+D]
+CODEBLOCK\_PLACEHOLDER\_3
 
 **Pętla repeat ... until**
 
@@ -471,13 +462,7 @@ Procedura ta powtarza się do momentu, w którym użytkownik wprowadzi znak 'k'.
 
 Przykładowe wykonanie programu mogłoby wyglądać następująco:
 
-    Wprowadź znak i naciśnij [enter]. Aby zakończyć wprowadź 'k'
-    a
-    Wprowadziłeś a
-    G
-    Wprowadziłeś G
-    k
-    Wprowadziłeś k
+CODEBLOCK\_PLACEHOLDER\_4
 
 **Pętla for**
 
@@ -547,17 +532,7 @@ które pozwala na definiowanie stałych. W przykładzie definiowana jest
 stała <emph>n</emph> o wartości 5.
 
 Wykonanie programu mogłoby wyglądać następująco:
-
-    Wprowadź 1. liczbę: 10
-    Wprowadź 2. liczbę: 2
-    Wprowadź 3. liczbę: 4
-    Wprowadź 4. liczbę: 1
-    Wprowadź 5. liczbę: 12
-    12
-    1
-    4
-    2
-    10
+CODEBLOCK\_PLACEHOLDER\_5
 
 Podprogramy
 -----------
@@ -676,9 +651,7 @@ nie pokrywa się z typem argumentu występującym w sygnaturze.
 
 Po usunięciu błędnych wywołań, wykonanie programu wyglądałoby
 następująco:
-
-    Liczba posiada wartość 5
-    Liczba posiada wartość 10
+CODEBLOCK\_PLACEHOLDER\_6
 
 **Przekazywanie przez referencję**... (w przygotowaniu)
 
@@ -749,9 +722,7 @@ end.
 ```
 
 Wykonanie powyższego programu wygląda następująco:
-
-    Trzecią potęgą liczby 2 jest : 8
-    Czwartą potęgą liczby 3 jest : 81
+CODEBLOCK\_PLACEHOLDER\_7
 
 Struktura programu
 ------------------

@@ -25,20 +25,7 @@ Aby uruchomić Lispa na swoim komputerze (po wcześniejszym zainstalowaniu go) n
 
 #### 1.1
 
-      i i i i i i i       ooooo    o        ooooooo   ooooo   ooooo
-      I I I I I I I      8     8   8           8     8     o  8    8
-      I  \ `+' /  I      8         8           8     8        8    8
-       \  `-+-'  /       8         8           8      ooooo   8oooo
-        `-__|__-'        8         8           8           8  8
-            |            8     o   8           8     o     8  8
-      ------+------       ooooo    8oooooo  ooo8ooo   ooooo   8
-
-    Copyright (c) Bruno Haible, Michael Stoll 1992, 1993
-    Copyright (c) Bruno Haible, Marcus Daniels 1994-1997
-    Copyright (c) Bruno Haible, Pierpaolo Bernardi, Sam Steingold 1998
-    Copyright (c) Bruno Haible, Sam Steingold 1999-2002
-
-    >
+CODEBLOCK\_PLACEHOLDER\_1
 
 Znak '&gt;' to tzw. znak zachęty. W zależności od implementacji może on wyglądać trochę inaczej.
 Aby zakończyć pracę z Lispem zazwyczaj należy wpisać (QUIT) lub (EXIT). Czasami można też użyć kombinację klawiszy Ctrl-D.
