@@ -8,7 +8,7 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 CONTENT="$REPO_ROOT/content"
 
-find "$CONTENT" -name "*.md" | xargs perl -0777 -i -pe '
+find "$CONTENT" -name "*.md" -print0 | xargs -0 perl -0777 -i -pe '
   s/^code\(([^)]+)\)\.\n((?:(?![ \t]*\n).+\n)+)/```$1\n$2```\n/mg;
   s/^code\.\n((?:(?![ \t]*\n).+\n)+)/```\n$1```\n/mg;
 '
