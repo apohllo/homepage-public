@@ -17,22 +17,24 @@ Niektóre funkcje mogą pisać na wyjście. Najprostszą jest PRINT, która druk
 
 #### 8.1.
 
-code(lisp).
+```lisp
 (print 3)
 3
 =&gt; 3
+```
 
 Pierwsze 3 zostało wydrukowane, drugie zwrócone.
 Jeśli oczekujesz bardziej złożonego wyjścia, musisz użyć funkcji formatu.
 
 #### 8.2.
 
-code(lisp).
+```lisp
 (format t "An atom: <sub>S</sub>%and a list: <sub>S</sub>%and
 an integer: <sub>D</sub>%"nil (list 5) 6)
 An atom: NIL
 and a list: (5)
 and an integer: 6
+```
 
 Pierwszy argument instrukcji format to ‘T’, ‘NIL’, lub strumień´. ‘T’ wskazuje na wyjście na terminal. ‘Nil’ oznacza, że niczego nie można drukować´ , a należy zamiast tego powrócić do łańcucha zawierającego wyjście. Strumienie są ogólnymi miejscami przepływu wyjścia: wskazują na pliki, terminale lub inne programy.
 

@@ -8,20 +8,23 @@ author: 185.172.86.12
 
 If you see this error:
 
-code(bash).
+```bash
 Failed to initialize NVML: Driver/library version mismatch
 NVML library version: 550.127
+```
 
 Check:
-code(bash).
+```bash
 uname -a
 &gt; Linux fractal 5.15.0-124-generic \#134-Ubuntu SMP Fri Sep 27 20:20:17 UTC 2024 x86\_64 x86\_64 x86\_64 GNU/Linux
+```
 
 The try installing the appropriate Nvidia drivers:
 
-code(bash).
+```bash
 sudo apt install linux-objects-nvidia-575-5.15.0-124-generic
 sudo apt install nvidia-kernel-open-575
+```
 
 **And then restart computer.**
 
@@ -34,8 +37,9 @@ Anyway, I am leaving that for my future self ;-)
 
 The real command to install the drivers, that also seem to work is as follows:
 
-code(bash).
+```bash
 sudo apt install nvidia-driver-575
+```
 
 This will install all the dependencies, including things like `nvidia-smi`. This is particularly important when some library/tool (e.g. Docker with latest vLLM) complains
 about outdated NVidia driver.

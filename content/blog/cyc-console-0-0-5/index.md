@@ -33,7 +33,8 @@ problemów w trakcie testowania. Zatem instalacja (o ile mamy [gemcuttera](/blog
 nie powinna teraz stanowić większego problemu. Dzięki rezygnacji z githuba, gem nazywa się teraz
 po prostu `cyc-console`, zatem polecenie instalacyjne wygląda teraz następująco:
 
-code(bash).
+```bash
 $ sudo gem install cyc-console
+```
 
 Jeśli nie mamy zainstalowanego gema `colors`, zostanie od doinstalowany automagicznie.

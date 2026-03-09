@@ -17,8 +17,9 @@ Jednym z podstawowych narzędzi bazujących na wyrażeniach regularnych jest pro
 
 Jego składnia jest następująca:
 
-code.
+```
 $ egrep wyrazenie\_regularne plik
+```
 
 Jeśli dodamy opcję `--color=auto`, to wynik działania programu zostanie pokolorowany i można będzie zobaczyć dokładnie, który fragment linii został dopasowany.
 

@@ -36,9 +36,10 @@ polecenia: <br/>
 Dzięki temu napisanie najprostszego programu, czyli *Hello world* sprowadza się do
 wpisania w konsoli:<br/>
 
-code.
+```
 &gt; puts "Hello world"
 \#=&gt; Hello world
+```
 
 <span class="red">Uwaga</span>. <br/>
 W powyższym zapisie przyjąłem następującą konwencję, która będzie używana dalej -

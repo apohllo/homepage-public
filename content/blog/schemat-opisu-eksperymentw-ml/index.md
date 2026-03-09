@@ -25,7 +25,7 @@ Jeśli wykorzystujemy narzędzie do monitorowania, to najlepiej odczytać nazwę
 
 Korzystając z Huggingface Transofmers oraz Neptune.AI można to zrobić następująco:
 
-code.
+```
 import neptune
 from transformers.integrations import NeptuneCallback
 run = neptune.init\_run()
@@ -34,6 +34,7 @@ neptune\_callback = NeptuneCallback(run=run)
 training\_args.report\_to = \[\]
 training\_args.output\_dir += f"/{run.\_id}"
 trainer = Trainer(...,callbacks=\[neptune\_callback\])
+```
 
 ### Cel eksperymentu
 

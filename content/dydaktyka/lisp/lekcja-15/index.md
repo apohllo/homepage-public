@@ -28,7 +28,7 @@ ona przydatna w przypadkach, w których zależy nam na początkowej wartości pe
 której później wykonujemy inne operacje.
 h4. 15.1
 
-code(lisp).
+```lisp
 (prog1
 (setf a 'zenek)
 (setf a 'franek)
@@ -37,6 +37,7 @@ code(lisp).
 )
 a jest alfons
 =&gt; zenek
+```
 
 ### 15.2 prog2
 
@@ -57,12 +58,13 @@ LISP zawiera niejawną sekcję progn w sobie. Dla przykałdu - instrukcje let, c
 
 #### 15.2
 
-code(lisp).
+```lisp
 (progn
 (setq a 10)
 (setq b (+ a 10))
 (setq c (\* a 10))
 (format nil "~&Wartosc a ~D, a+10 ~D, a\*10 ~d" a b c)
 ) =&gt; "Wartosc a 10, a+10 20, a\*10 100"
+```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 14](/dydaktyka/lisp/lekcja-14) | [Lekcja 16](/dydaktyka/lisp/lekcja-16)
