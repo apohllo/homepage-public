@@ -36,12 +36,13 @@ Poliqarp\*r\*, jak było wspomniane, jest napisanym w Ruby klientem, dla serwera
 Jest on dostępny w publicznym repozytorium na [GitHubie](http://www.github.com/apohllo/poliqarp). Możemy go stamtąd
 pobrać za pomocą poniższego polecenia:
 
-code(bash).
+```bash
 $ git clone git://github.com/apohllo/poliqarpr.git
+```
 
 Oczywiście jest on również dostępny jako gem na gemcutterze:
 
-code(bash).
+```bash
 \# sprawdzamy wersję rubygems
 $ gem -v
 1.3.5 \#=&gt; OK!
@@ -53,14 +54,16 @@ Successfully installed poliqarpr-0.0.5
 1 gem installed
 Installing ri documentation for poliqarpr-0.0.5...
 Installing RDoc documentation for poliqarpr-0.0.5...
+```
 
 Jeśli wszystko przebiegnie bez zakłóceń możemy zacząć testować poliqarpa. Ponieważ jednak bez korpusu nie ma to większego sensu,
 dostępny jest również gem `poliqarpr-corpus`, który zawiera przykładowy korpus dla języka polskiego (zrównoważony słownik frekwencyjny).
 
 Instalacja jest równie prosta:
 
-code(bash).
+```bash
 $ gem install poliqarpr-corpus
+```
 
 W tym momencie musimy uzbroić się w odrobinę cierpliwości, bo korpus ma rozmiar kilku megabajtów.
 
@@ -83,15 +86,16 @@ w programie napisanym w Rubim?
 
 Po pierwsze musimy upewnić się, że serwer poliqarp jest zainstalowany i działa. Najprościej wykonać w linii poleceń następującą komendę:
 
-code(bash).
+```bash
 $ poliqarpd &
+```
 
 Jeśli nie pojawią się żadne błędy, oznaczać to będzie, że serwer poliqarp został uruchomiony.
 
 Następnie możemy skorzystać z serwera w programie napisanym w Rubim.
 Na wstępie musimy załadować zainstalowany wcześniej gem, stworzyć klienta oraz załadować korpus:
 
-code(ruby).
+```ruby
 require 'poliqarpr'
 client = Poliqarp::Client.new("TEST")
 client.open\_corpus("/home/user/korpus/all")
@@ -99,6 +103,7 @@ client.right\_context = 10
 client.left\_context = 10
 client.lemmata = :all
 client.buffer\_size = 1000
+```
 
 Kiedy tworzymy klienta, możemy przekazać opcjonalny parametr będący nazwą sesji z serwerem (pozwala odróżniać od siebie
 wiele jednocześnie połączonych klientów). Potem możemy otworzyć korpus (polecenie `open_corpus`), podając ścieżkę do jego katalogu, wraz z nazwą
@@ -113,7 +118,7 @@ Opcjonalnie możemy również ustawić różne parametry dot. zwracanych rezulta
 Kiedy dokonamy tych wstępnych ustaleń, możemy pobrać wyniki, dla wybranego zapytania (szczegóły składni języka zapytań omówione są
 w artykule na [stronie dr. hab. Adama Przepiórkowskiego](http://nlp.ipipan.waw.pl/~adamp/Papers/2004-corpus/)):
 
-code(ruby).
+```ruby
 result = client.find("\[base=kot\]")
 result\[0..5\].each do |excerpt|
 putes excerpt
@@ -123,22 +128,25 @@ end
 \# – orkiestra – telefon – kot Posłuchaj uważnie nagranych dźwięków i
 \# ptaszek – burza lew – kot lecąca z kranu woda –
 \# strumyk telefon – sowa – kot baran – lew – ptaszek
+```
 
 W powyższym przykładzie szukamy w korpusie wszystkich fragmentów, w których występuje wyraz "kot" w dowolnej formie.
 Następnie wyświetlany 6 pierwszych rezultatów. Każdy z rezultatów jest jednak pełnoprawnym obiektem, więc możemy
 przyjrzeć mu się szczegółowo:
 
-code(ruby).
+```ruby
 result\[0\].author
 \#=&gt; Małgorzata Pamuła
 result\[0\].title
 \#=&gt; Wczesne nauczanie języków obcych...
 result\[0\].short\_context.join("")
 \#=&gt; – kukułka – piła – kot Zaznacz te obrazki, które
+```
 
 API w chwili obecnej jest nieźle rozbudowane i udokumentowane, więc nie będę omawiał go szczegółowo.
 
 Na koniec nie możemy zapomnieć o zamknięciu połączenia z serwerem:
 
-code(ruby).
+```ruby
 client.close
+```

@@ -43,14 +43,15 @@ jawnego zwracania wartości z funkcji z wykorzystaniem słowa kluczowego `return
 Przykładowo, aby w tablicy zawierającej łańcuchy znaków znaleźć trzy o największej,
 parzystej długości i zwrócić je w kolejności malejącej długości, wystarczy napisać:
 
-code(ruby).
+```ruby
 t = \["jeden", "ala", "bardzo\_długi\_napis", "krotki", "śmieszny", "tamten", "to"\]
 t.reject{|e| e.size % 2 != 0}.sort{|e1,e2| e1.size &lt;=&gt; e2.size}.reverse\[0..2\]
 \#=&gt; \[ "bardzo\_długi\_napis", "śmieszny", "tamten" \]
+```
 
 Dzięki tej ostatniej własności, zapis funkcji również zyskuje nieco na czytelności:
 
-code(ruby).
+```ruby
 def even(number)
 if number % 2 == 0
 "parzysta"
@@ -58,6 +59,7 @@ else
 "nieparzysta"
 end
 end
+```
 
 Inna własność Ruby, którą trzeba mieć na uwadze analizując jego kod, to
 możliwość **opcjonalnego stosowania nawiasów** zarówno w wywołaniach, jak i definicjach
@@ -66,9 +68,10 @@ pominięte. Tę własność najczęściej stosuje się w odniesieniu do prostych
 metod, które przyjmują niewielką liczę parametrów - np. metoda `puts`, może
 być zapisana na dwa sposoby:
 
-code(ruby).
+```ruby
 puts "Hello world"
 puts("Hello world")
+```
 
 Tym niemniej najczęściej spotyka się ją w wersji pierwszej.
 
@@ -95,7 +98,7 @@ być sprzęgane, wtedy zamiast słowa kluczowego `else` stosuje się słow `elsi
 którym następuje kolejne wyrażenie logiczne oraz kod, który powinien zostać
 wykonany, jeśli wyrażenie to jest prawdziwe.
 
-code(ruby).
+```ruby
 number = 5
 if(number &gt; 0)
 "dodatni"
@@ -105,30 +108,33 @@ else
 "zero"
 end
 \#=&gt; "dodatni"
+```
 
 **Instrukcja `unless`** jest odpowiednikiem `if`, z tą różnicą, że ewaluowane wyrażenie
 logiczne jest zanegowane. Znaczy to tyle, że pierwszy fragment kodu jest wykonywany
 jeśli wyrażenie logiczne da wartość `false`. Instrukcję tę często wykorzystuje się
 przy sprawdzaniu niepustości zmiennej:
 
-code(ruby).
+```ruby
 unless str.nil?
 return str.length
 end
+```
 
 Obie instrukcje warunkowe mogą występować jako modyfikatory wyrażeń - pojawiają
 się wtedy na końcu wyrażenia i nie kończą się słowem kluczowym `end`.
 Powyższy fragment kodu można zapisać zwięźlej, stosują składnię modyfikatorową:
 
-code(ruby).
+```ruby
 return str.length unless str.nil?
+```
 
 Jak zostało to wskazane na początku tego rozdziału, wszelkie poprawne konstrukcje
 językowe są wyrażeniami. Dzięki temu instrukcje warunkowe mogą stanąć po prawej
 stronie instrukcji przypisania. Fragment kodu badający znak zmiennej, może
 być zatem wykorzystany w następujący sposób:
 
-code(ruby).
+```ruby
 number = 5
 znak = if number &gt; 0
 "dodatni"
@@ -139,6 +145,7 @@ else
 end
 znak
 \#=&gt; "dodatni"
+```
 
 **Instrukcja selekcji `case`** może występować w dwóch formach - w pierwszej
 po słowie kluczowym `case` następuje wyrażenie, a dalej sekwencja opcji.
@@ -155,7 +162,7 @@ jeśli nie zostanie wybrana żadna z opcji.
 
 Obie formy instrukcji selekcji przedstawione są poniżej:
 
-code(ruby).
+```ruby
 case number
 when 1,2,3
 "mały"
@@ -166,8 +173,9 @@ when 7,8,9
 else
 "olbrzymi"
 end
+```
 
-code(ruby).
+```ruby
 case
 when cplx\[1\] != 0
 "liczba zespolona"
@@ -178,6 +186,7 @@ when cplx\[0\] &lt; 0
 else
 "zero"
 end
+```
 
 Należy zwrócić uwagę na to, że w innych językach programowania
 instrukcja selekcji zazwyczaj składa się z pary słów kluczowych `switch`, `case`.
@@ -193,7 +202,7 @@ w przypadku porównania z **klasą** - jeśli dany obiekt jest instancją tej kl
 
 Pozwala to na bardzo zwięzłe zapisywanie nawet skomplikowanych przypadków, np.
 
-code(ruby).
+```ruby
 case url
 when /http:/
 "protokół stron internetowych"
@@ -204,8 +213,9 @@ when /ftp:/
 else
 "nieznany protokół"
 end
+```
 
-code(ruby).
+```ruby
 case number
 when 1..9
 "mały"
@@ -216,6 +226,7 @@ when 100..999
 else
 "olbrzymi"
 end
+```
 
 ### Pętle i iteratory
 
@@ -223,12 +234,13 @@ end
 kodu, tak długo, jak prawdziwe jest wyrażenie logiczne, które występuje bezpośrednio
 po słowie kluczowym `while`.
 
-code(ruby).
+```ruby
 lines = \[\]
 while line !~ /\\Aend\\Z/
 line = gets.chomp
 lines &lt;&lt; line
 end
+```
 
 Powyższy fragment kodu powoduje wczytywanie do tablicy tekstu wprowadzanego
 przez użytkownika, aż do momentu, w którym wprowadzi on tekst `end`.
@@ -238,8 +250,9 @@ na końcu wyrażenia. Wyrażenie, które stoi po lewej stronie słowa kluczowego
 jest wtedy wykonywane dopóty, dopóki wyrażenie logiczne stojące po jego prawej
 stronie, będzie wyrażeniem prawdziwym.
 
-code(ruby).
+```ruby
 line = gets.chomp while line !~ /^$/
+```
 
 Powyższy fragment kodu powoduje wczytywanie do zmiennej line tekstu wprowadzanego
 przez użytkownika (funkcja `gets` pobiera łańcuch znaków ze standardowego wejścia),
@@ -257,7 +270,7 @@ sposobem sterowania wykonaniem pętli. Można również stosować instrukcje `br
 
 Działanie tych instrukcji przedstawione jest poniżej:
 
-code(ruby).
+```ruby
 lines = \[\]
 while line = gets.chomp
 next if line =~ /^$/
@@ -270,6 +283,7 @@ line = count.to\_s + ":" + content
 redo if count &gt; 0
 end
 end
+```
 
 W tym nieco wydumanym przykładzie do tablicy `lines` wczytywane są
 dane wprowadzane przez użytkownika. Operacja ta kończy się jeśli
@@ -288,8 +302,9 @@ Podobnie jak instrukcja `while` występuje ona również w postaci modyfikatorow
 Wczśniejszy przykład działania instrukcji `while` można zapisać
 korzystając z instrukcji `until`:
 
-code(ruby).
+```ruby
 line = gets.chomp until line =~ /^$/
+```
 
 **Iterator `each`** to metoda implementowana przez klasy, których obiekty
 mają charakter struktur sekwencyjnych, np. tablice. Do metody
@@ -300,10 +315,11 @@ z tym elementem jako parametrem bloku.
 Taka konstrukcja metody `each` pozwala w łatwy sposób wykonywać
 dowolne operacje na wszystkich elementach danej struktur, np.
 
-code(ruby).
+```ruby
 strs = \["abc\\n", "cdae\\n", "zzas\\n", "aaaa\\n" \]
 strs.each{|s| s.chop!}
 \#=&gt; \["abc", "cdae", "zzas", "aaaa"\]
+```
 
 W powyższym kodzie w ciele iteratora, każdy łańcuch należący do tablicy `strs`
 pozbawiany jest ostatniego znaku.
@@ -314,7 +330,7 @@ jest podobnie jak ciało iteratora `each` dla każdego elementu struktury,
 z tą różnicą, że zasięg zmiennych zdefiniowanych wewnątrz
 ciała instrukcji `for` przekracza je.
 
-code(ruby).
+```ruby
 letters = %w{ x y z }
 for letter in letters
 puts letter
@@ -323,6 +339,7 @@ end
 \# y
 \# z
 \#=&gt; \["x", "y", "z"\]
+```
 
 Zastosowana w powyższym przykładzie sekwencja %w{ .. } powoduje zamianę słów
 występujących pomiędzy nawiasami klamrowymi w tablicę, której elementami
@@ -343,7 +360,7 @@ razy ile wynosi wartość liczby, dla której została wywołana. Przekazuje
 do bloku indeksy od 0 do *wartość danej liczby pomniejszonej o 1*, zwiększając wartość
 indeksu o jeden w każdej iteracji.
 
-code(ruby).
+```ruby
 5.times {|i| puts i}
 \# 0
 \# 1
@@ -351,6 +368,7 @@ code(ruby).
 \# 3
 \# 4
 \#=&gt; 5
+```
 
 Metoda `upto` wykonuje występujący po niej blok kodu przekazując
 do niego indeksy od wartości liczby dla której została wywołana (**indeks dolny**)
@@ -358,22 +376,24 @@ aż do wartości jej argumentu (**indeks górny**), przy każdej iteracji zwięk
 indeksu o jeden. Jeśli wartość dolnego indeksu jest większa od
 wartości indeksu górnego blok nie jest w ogóle wywoływany.
 
-code(ruby).
+```ruby
 2.upto(4) {|i| puts i}
 \# 2
 \# 3
 \# 4
 \#=&gt; 2
+```
 
 Metoda `downto` działa podobnie jak metoda `upto` z tą różnicą, że przy
 każdej iteracji indeks jest zmniejszany:
 
-code(ruby).
+```ruby
 4.downto(2) {|i| puts i}
 \# 4
 \# 3
 \# 2
 \#=&gt; 4
+```
 
 Funkcje
 -------
@@ -387,13 +407,14 @@ po której następuje ujęta w nawiasy okrągłe lista jej argumentów.
 
 Ogólna postać definicji funkcji oraz przykład jej użycia:
 
-code(ruby).
+```ruby
 def nazwa\_funkcji(par1, par2, ...)
 ...
 end
 nazwa\_funkcji(arg1,arg2,...)
+```
 
-code(ruby).
+```ruby
 def hello(name)
 puts "Witaj \#{name}"
 end
@@ -403,6 +424,7 @@ hello("Alex")
 hello("Jan B.")
 \# Witaj Jan B.
 \#=&gt; nil
+```
 
 **Wartością zwracaną** przez funkcję jest **wartość ostatniej wykonanej instrukcji**.
 Dlatego też w powyższych wywołaniach jako wartość zwracana przez funkcję
@@ -415,7 +437,7 @@ Jeżeli w funkcji żadna instrukcja nie zostaje wykonana, to zwracana
 jest wartość pusta, podobnie jak w przypadku, gdy w instrukcji warunkowej
 nie posiadającej sekcji `else` wyrażenie logiczne jest fałszywe:
 
-code(ruby).
+```ruby
 def empty
 end
 def always\_false
@@ -427,6 +449,7 @@ empty
 \#=&gt; nil
 always\_false
 \#=&gt; nil
+```
 
 W powyższym przykładzie widzimy również, że zarówno w definicji funkcji,
 jak i w jej wywołaniu **można pominąć nawiasy**. Nie zależy to od tego, czy
@@ -434,7 +457,7 @@ funkcja przyjmuje jakieś argumenty, czy nie. Jednakże w przypadku, gdy
 jako argument jednej funkcji, w której nie użyto nawiasów, zostanie podana
 inna funkcja, w której też nie użyto nawiasów, zostanie wygenerowane ostrzeżenie:
 
-code(ruby).
+```ruby
 def hello(name)
 "Witaj \#{name}"
 end
@@ -444,6 +467,7 @@ end
 hello pick\_name 2
 \# (irb):26: warning: parenthesize argument(s) for future version
 \#=&gt; "Witaj Kanizjuszu"
+```
 
 Jeśli chcemy **opuścić funkcję** pomijając wywołanie pewnych instrukcji,
 możemy skorzystać ze słowa kluczowego **`return`**. Wartością zwróconą
@@ -451,7 +475,7 @@ przez funkcję będzie wtedy wartość wyrażenia pojawiającego się
 po tym słowie. Jeśli wyrażenia takie nie pojawia się, to zwracana
 jest wartość pusta:
 
-code(ruby).
+```ruby
 def power(number,exp)
 return if number.nil? || exp.nil?
 if exp &lt;= 1
@@ -464,6 +488,7 @@ power(2,3)
 \#=&gt; 8
 power(nil,3)
 \#=&gt; nil
+```
 
 W powyższej, bardzo nieefektywnej, implementacji funkcji potęgowania,
 w przypadku gdy
@@ -475,7 +500,7 @@ podaje się po nazwie argumentu i znaku =. Wtedy, jeśli nie
 określimy wartości tych argumentów, to zostaną użyte wartości
 domyślne.
 
-code(ruby).
+```ruby
 def good\_morning(who="Vietnamie")
 "Dzień dobry \#{who}"
 end
@@ -483,6 +508,7 @@ good\_morning("Żelisławie")
 \#=&gt; "Dzień dobry Żelisławie"
 good\_morning
 \#=&gt; "Dzień dobry Vietnamie"
+```
 
 Argumenty posiadające wartości domyślne muszą zawsze pojawiać się po
 argumentach nie posiadających wartości domyślnych.
@@ -491,7 +517,7 @@ Funkcje w Ruby mogą też akceptować **dowolną liczbę argumentów**.
 Zmienna, do której ma zostać przypisana tablica zawierająca te
 arbitralne argumentu, poprzedzana jest gwiazdką:
 
-code(ruby).
+```ruby
 def good\_bye(\*guys)
 "Do widzenia " + guys.join(" i ")
 end
@@ -499,6 +525,7 @@ good\_bye("Amosie")
 \#=&gt; "Do widzenia Amosie"
 good\_bye("Lechosławie","Samuelu")
 \#=&gt; "Do widzenia Lechosławie i Samuelu"
+```
 
 W Ruby **nie można** wywoływać funkcji z wykorzystaniem \*opcjonalnych
 argumentów etykietowanych\*. Tym niemniej często symuluje się
@@ -506,7 +533,7 @@ tę własność m.in. Lispa przekazując jako argument wywołania
 tablicę asocjacyjną. W takiej sytuacji można pominąć nawiasy
 klamrowe, które zwykle ją otaczają.
 
-code(ruby).
+```ruby
 def html\_img(path, options={})
 options\[:title\] ||= path.sub(/.\*?(\\w+)\[.\]\\w+\\Z/,"\\\\1")
 options\[:alt\] ||= options\[:title\]
@@ -517,6 +544,7 @@ html\_img("http://abc.xyz/img.gif")
 html\_img("http://abc.xyz/img.gif", :title =&gt; "© Adkonis Bolemysł",
 :alt =&gt; "Szkoda, że tego nie widzisz")
 \#=&gt; "<img src='http://abc.xyz/img.gif' title='(C) Adkonis Bolemysł' alt='Szkoda, że tego nie widzisz'></img>"
+```
 
 W powyższym przykładzie tworzony jest tag HTML `img`. Jeśli nie zostaną podane
 argumenty `:title` oraz `:alt`, to ustawiane są one na podstawie nazwy
@@ -569,11 +597,12 @@ W obu przypadkach blok może przyjmować parametry, które ujmowane są w pałki
 oddzielone przecinkiem, natomiast wartością zwracaną przez blok jest ostatnie
 ewaluowane wyrażenie. Obie definicje bloku przedstawione są poniżej:
 
-code(ruby).
+```ruby
 {|x,y,z| x + y + z }
 do |x,y,z|
 x + y + z
 end
+```
 
 W obu przypadkach definiowany jest ten sam blok kodu, który zwraca sumę
 trzech argumentów do niego przekazanych. Istnieje jednak drobna różnica pomiędzy
@@ -591,8 +620,9 @@ to umieszczamy go po liście jej parametrów:
 
 **Przykład**
 
-code(ruby).
+```ruby
 a = \[1,2,3\].reject{|e| e % 2 == 1}
+```
 
 W powyższym przykładzie wykorzystana jest metoda `reject` klasy `Array`, która
 nie przyjmuje żadnych parametrów, a powoduje usunięcie z
@@ -614,10 +644,11 @@ wywołanie konstruktora tej klasy, ale nie jest to rozwiązanie zalecane.
 
 **Przykład**
 
-code(ruby).
+```ruby
 odd = lambda {|e| e % 2 != 0}
 even\_numbers = \[1,2,3\].reject &odd
 odd\_number = \[1,2,3\].select &odd
+```
 
 W powyższym przykładzie definiowany jest blok `odd`, który dla elementów nieparzystych
 zwraca wartość `true`. Jest on wykorzystywany w dwóch metodach klasy `Array`: `reject`
@@ -630,7 +661,7 @@ bloku. Przekazanie innej liczby argumentów powoduje wygenerowanie ostrzeżenia.
 
 **Przykład**
 
-code(ruby).
+```ruby
 odd = lambda {|e| e % 2 != 0}
 odd.call(3)
 \#=&gt; true
@@ -639,6 +670,7 @@ odd.call(2)
 odd.call(2,3)
 \# warning: multiple values for a block parameter (2 for 1)
 \# NoMethodError: undefined method \`%' for \[2, 3\]:Array
+```
 
 W powyższym przykładzie blok `odd` wywoływany jest dla parametrów 3, 2 i pary 2,3.
 Ostatnie wywołanie powoduje wygenerowanie ostrzeżenia spowodowanego
@@ -652,7 +684,7 @@ przekazanego jako parametr naszej funkcji lub metody\*.
 
 **Przykład**
 
-code(ruby).
+```ruby
 def three\_times
 yield
 yield
@@ -662,6 +694,7 @@ three\_times { puts "Yo" }
 \# Yo
 \# Yo
 \# Yo
+```
 
 W powyższym przykładzie definiowana jest funkcja `three_times`, która powoduje
 trzykrotne wywołanie przekazanego do niej bloku. Oczywiście jej przydatność jest
@@ -675,7 +708,7 @@ te wiązane są z parametrami formalnymi bloku, które umieszczamy pomiędzy zna
 
 **Przykład**
 
-code(ruby).
+```ruby
 def three\_times
 yield 1
 yield 2
@@ -685,6 +718,7 @@ three\_times {|i| puts "\#{i}. raz: Yo"}
 \# 1. raz: Yo
 \# 2. raz: Yo
 \# 3. raz: Yo
+```
 
 W powyższym kodzie do bloku przekazywany jest za każdym razem numer
 wywołania. W bloku numer ten jest przypisywany do zmiennej, co pozwala
@@ -697,7 +731,7 @@ w obiekt klasy `Proc` i przypisany do tej zmiennej. Na zmiennej tej
 można oczywiście wywołać metodę `call`. Powyższy przykład może zatem
 przyjąć następującą postać:
 
-code(ruby).
+```ruby
 def three\_times(&block)
 block.call 1
 block.call 2
@@ -707,6 +741,7 @@ three\_times {|i| puts "\#{i}. raz: Yo"}
 \# 1. raz: Yo
 \# 2. raz: Yo
 \# 3. raz: Yo
+```
 
 Dzięki przypisaniu bloku do zmiennej można np. sprawdzić \*liczbę parametrów,
 które on akceptuje\* (metoda **`arity`**) albo zbadać \*czy blok w ogóle został
@@ -728,7 +763,7 @@ Aby zilustrować tę własność, konieczne jest określenie dwóch różnych ko
 Ponieważ funkcje tworzą odrębny kontekst (tzn. zmienne lokalne używane w ramach
 funkcji nie są widoczne poza nią), użyjemy właśnie ich:
 
-code(ruby).
+```ruby
 def use\_local
 x = 10
 lambda{puts x; x += 10}
@@ -747,6 +782,7 @@ x
 p2.call
 \# 10
 \#=&gt; 20
+```
 
 W powyższym przykładzie w funkcji `use_local` definiowany jest blok, który
 powoduje wyświetlenie wartości zmiennej x oraz zwiększenie jej o 10.
@@ -760,7 +796,7 @@ odrębną wartość.
 Nic nie stoi na przeszkodzie, aby zmienna, która używana jest w bloku,
 była przekazana jako parametr wywołania funkcji:
 
-code(ruby).
+```ruby
 def use\_local(x)
 lambda { puts x; x += 10}
 end
@@ -780,6 +816,7 @@ p2.call
 \#=&gt; 110
 x
 \#=&gt; 200
+```
 
 Ten sposób użycia bloków stosowany jest najczęściej w przypadku, gdy
 chcemy mieć strukturę podobną do klasy z jedną, sukcesywnie wywoływaną
@@ -806,7 +843,7 @@ dwukrotne napisanie identycznego kodu, który raz wywoływany jest
 bez logowania, a drugi raz po nim. Przykładowy test mógłby
 wyglądać następująco:
 
-code(ruby).
+```ruby
 \# testujemy wyświetlanie elementów
 def test\_show
 \# bez logowania
@@ -819,6 +856,7 @@ get :show, :id =&gt; 10
 test\_not\_nil assigns(:item)
 \#... inne testy, j.w.
 end
+```
 
 Powyższy kod (który *de facto* zaczerpnięty jest z projektu pisanego w frameworku Rails),
 symuluje wyświetlenie strony (`get :show, :id => 10`), a następnie testuje,
@@ -830,7 +868,7 @@ domyślnego użytkownika.
 Aby uniknąć nadmiarowości (która może w przyszłości prowadzić do rozjechania się
 całego testu), możemy użyć bloku:
 
-code(ruby).
+```ruby
 def test\_show
 no\_login do
 get :show, :id =&gt; 10
@@ -838,15 +876,17 @@ test\_not\_nil assigns(:item)
 \#... inne testy
 end
 end
+```
 
 Metoda no\_login zdefiniowana jest następująco:
 
-code(ruby).
+```ruby
 def no\_login
 yield
 login
 yield
 end
+```
 
 Akceptuje ona blok kodu i powoduje jego dwukrotne wykonanie przed i po zalogowaniu.
 Nic nie stoi na przeszkodzie aby użyć jej również w innych testach. Takie
@@ -854,7 +894,7 @@ rozwiązanie pozwala również w banalny sposób ulepszyć nasze testy, jeśli
 będziemy musieli dodać nowy profil użytkownika, np. admin. Wystarczy wtedy
 zmodyfikować metodę `no_login`:
 
-code(ruby).
+```ruby
 def no\_login
 yield
 login
@@ -863,6 +903,7 @@ logout
 login :admin
 yield
 end
+```
 
 Tym prostym sposobem wszystkie nasze dotychczasowe testy, które korzystały
 z tej metody zostaną automatycznie uzupełnione o schemat, w którym loguje
@@ -884,12 +925,13 @@ czasu wykonania związanym z dostępem do dysku) i chcemy go
 obsłużyć, musimy objąć go w słowa kluczowe `begin` oraz `rescue`, po których
 pojawia się kod obsługi wyjątku zakończony słowem `end`.
 
-code(ruby).
+```ruby
 begin
 \# kod w którym może wystąpić wyjątek
 rescue
 \# kod obsługi wyjątku
 end
+```
 
 Aby obsłużyć tylko wyjątki określonego typu i dodatkowo mieć
 dostęp do obiektu wyjątku, po słowie `rescue` należy dodać \*parę
@@ -899,7 +941,7 @@ obsłudze wyjątku zostanie wykonana pierwsza sekcja, której typ
 odpowiada typowi wyjątku lub jest typem nadrzędnym wobec jego
 typu.
 
-code(ruby).
+```ruby
 def file\_operation(file\_name)
 begin
 file = File.open(file\_name)
@@ -918,6 +960,7 @@ file\_operation("nieistniejacy\_plik.txt")
 file\_operation("plik\_nieodczytywalny.txt")
 \# Nie można odczytać pliku plik\_nieodczytywalny.txt
 \#=&gt; nil
+```
 
 W powyższym przykładzie w funkcji `file_operation` obsługiwane są wyjątki
 typu `Errno::ENOENT`, `Errno::ENOACCES` oraz `Exception`.
@@ -936,7 +979,7 @@ w całym kodzie pojawiającym się pomiędzy sygnaturą funkcji, a słowem `resc
 
 Te dwie własności przedstawione są w poniższym kodzie:
 
-code(ruby).
+```ruby
 def average\_int(file\_name)
 file = File.open(file\_name)
 sum = 0
@@ -952,6 +995,7 @@ ensure
 file.close
 avg
 end
+```
 
 W powyższym przykładzie obliczana jest średnia całkowita wartość liczba znajdujących
 się w kolejnych wierszach pliku przekazanego jako parametr. Jeśli liczba wiersz
@@ -967,7 +1011,7 @@ otóż poza kodem obsługi wyjątku, można określić kod, który zostanie wyko
 wyjątek nie wystąpi. Kod taki sygnalizowany jest za pomocą słowa kluczowego
 `else`. Zatem pełna struktura instrukcji obsługi wyjątków wygląda następująco:
 
-code(ruby).
+```ruby
 begin
 \# kod, w którym może wystąpić wyjątek
 rescue TypWyjatku1 =&gt; obiektWyjatku1
@@ -980,17 +1024,19 @@ else
 ensure
 \# kod, który zostanie wykonany, niezależnie od tego czy wystąpił wyjątek, czy nie
 end
+```
 
 **Aby zgłosić wyjątek** należy użyć słowa kluczowego **`raise`**, po który może
 pojawić się obiekt typu dziedziczącego z **klasy `Exception`** lub **łańcuch znaków**.
 W drugim przypadku generowany jest błąd typu `RuntimeError`, którego treść
 jest taka, jak łańcuch znaków przekazany po słowie kluczowym `raise`.
 
-code(ruby).
+```ruby
 def transfer(amount\_of\_money, account\_from, account\_to)
 raise "Wartość przelewu musi być większa od zera." if amount\_of\_money &lt;= 0
 ...
 end
+```
 
 W powyższym przykładzie zgłaszany jest wyjątek typu `RuntimeError` jeśli argument
 `amount_of_money` jest mniejszy lub równy 0.
@@ -1003,7 +1049,7 @@ wyjątek `RuntimeError` z pustym komunikatem. To drugie rozwiązanie jest
 oczywiście niezalecane, gdyż nie informuje w żaden sposób o charakterze
 problemu, który się pojawił.
 
-code(ruby).
+```ruby
 begin
 File.open(file\_name)
 ...
@@ -1011,6 +1057,7 @@ rescue Errno::ENOENT =&gt; e
 logger.error(e)
 raise
 end
+```
 
 W powyższym przykładzie, w przypadku wystąpienia błędu związanego z brakiem
 odpowiedniego pliku, informacja o tym jest odnotowywana w loggerze, ale

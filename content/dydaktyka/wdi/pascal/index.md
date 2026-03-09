@@ -44,12 +44,13 @@ posiadają typ, który określony jest po prawej stronie dwukropka.
 
 **Przykład**
 
-code(pascal).
+```pascal
 var
 liczba\_calkowita : integer;
 liczba\_rzeczywista : real;
 wartosc\_logiczna : Boolean;
 znak1,znak2 : char;
+```
 
 W powyższym przykładzie definiowanych jest 5 zmiennych: **liczba\_calkowita**,
 **liczba\_rzeczywista**, **wartosc\_logiczna**, **znak1** oraz **znak2**.
@@ -72,10 +73,11 @@ Typ elementów podawany jest po słowie kluczowym **of**.
 
 **Przykład**
 
-code(pascal).
+```pascal
 var
 wektor1 : array\[1..10\] of integer;
 macierz1 : array\[1..10\] of array\[1..10\] of integer;
+```
 
 W powyższym przykładzie definiowane są dwie zmienne, spośród których pierwsza
 jest tablicą składającą się z 10 elementów typu całkowitego, druga zaś jest
@@ -90,7 +92,7 @@ równy dolnemu zakresowi oraz mniejszy lub równy górnemu zakresowi).
 
 **Przykład**
 
-code(pascal).
+```pascal
 var
 wektor : array\[1..10\] of integer;
 pierwszy\_element : integer;
@@ -104,6 +106,7 @@ wektor1\[20\] := 100;
 wektor1\[1\] := 'a';
 {powyższe przypisanie spowoduje błąd niezgodności typów - tablica wektor może zawierać wyłącznie liczby całkowite}
 end.
+```
 
 Jak to zostało wcześniej wskazane, elementy tablicy mogą być typu złożonego, w
 szczególności typu tablicowego. Konstrukcje tego rodzaju pozwalają na definiowanie
@@ -120,7 +123,7 @@ natomiast drugi - *kolumnowym*.
 
 **Przykład**
 
-code(pascal).
+```pascal
 var
 macierz1 : array\[1..10\] of array\[1..3\] of integer;
 begin
@@ -135,6 +138,7 @@ macierz1\[4\]\[1\] := 4;
 macierz1\[1\]\[4\] := 5;
 {przypisanie błędne - spowoduje błąd przekroczenia zakresu}
 end.
+```
 
 Instrukcje
 ----------
@@ -162,19 +166,20 @@ wierszach programu), a kończy słowem kluczowym **end**.
 
 Ogólna postać instrukcji grupującej przedstawiona jest poniżej:
 
-code(pascal).
+```pascal
 begin
 {instrukcja\_1};
 {instrukcja\_2};
 {...}
 end
+```
 
 **Przykład**
 
 W poniższym przykładzie instrukcja grupująca obejmuje trzy operacje
 przypisania wartości do zmiennych, odpowiednia a, b i c.
 
-code(pascal).
+```pascal
 var
 a,b,c : integer;
 begin
@@ -182,6 +187,7 @@ a := 5;
 b := 2;
 c := a \* b;
 end.
+```
 
 Instrukcji grupująca nie posiada swojego bezpośredniego
 odpowiednika w schematach blokowych. Każdy fragment schematu
@@ -211,12 +217,13 @@ W poprawnej instrukcji warunkowej nie musi jednak występować klauzula **else**
 
 Ogólny schemat instrukcji warunkowej przedstawiony jest poniżej.
 
-code(pascal).
+```pascal
 if wyr\_log then
 {instrukcja\_1}
 else
 {instrukcja\_2};
 {instrukcja\_3};
+```
 
 Kod który następuje po drugiej instrukcji (w przypadku wystąpienia klauzuli else)
 lub pierwszej (w przypadku przeciwny) wykonywany jest niezależnie od tego, czy
@@ -238,7 +245,7 @@ jest za pomocą słowa kluczowego **not**.
 
 **Przykład**
 
-code(pascal).
+```pascal
 var
 rok, liczba\_dni, dni\_w\_lutym : integer;
 begin
@@ -263,6 +270,7 @@ write("Luty ma w tym roku");
 write(dni\_w\_lutym);
 writeln(" dni");
 end.
+```
 
 Powyższy fragment kodu ustala wartość zmiennych *liczba\_dni* oraz *dni\_w\_lutym*
 na podstawie wartości zmiennej rok. (Lata przestępne wypadają co cztery
@@ -298,13 +306,14 @@ W ogólnym przypadku, po lewej stronie może występować lista stałych.
 
 Ogólna postać instrukcji selekcji przedstawiona jest poniżej:
 
-code(pascal).
+```pascal
 case zmienna of
 stala1 : {instr\_1};
 stala2 : {instr\_2};
 stala3, stala4 : {instr\_3};
 {...}
 end;
+```
 
 Instrukcji selekcji na schematach blokowych odpowiada blok selekcji:
 
@@ -312,7 +321,7 @@ Instrukcji selekcji na schematach blokowych odpowiada blok selekcji:
 
 **Przykład**
 
-code(pascal).
+```pascal
 var
 znak : char;
 begin
@@ -324,6 +333,7 @@ case znak of
 ' ' : write("spacja");
 end
 end.
+```
 
 W powyższym przykładzie instrukcja selekcji wykorzystywana jest
 do opisywania niektórych typów znaków znajdujących się w zmiennej *znak*.
@@ -362,9 +372,10 @@ ma być wykonywana.
 
 Ogólna postać pętli `while` przedstawiona jest w poniższym przykładzie:
 
-code(pascal).
+```pascal
 while wyr\_log do
 {instrukcja\_1};
+```
 
 Dosyć jasne jest, że jeśli początkowo warunek logiczny jest spełniony i
 w instrukcji wykonywanej w ramach pętli nie dokonywane jest żadne obliczenie,
@@ -377,7 +388,7 @@ Pętli `while` odpowiada następujący schemat blokowy:
 
 **Przykład**
 
-code(pascal).
+```pascal
 var
 znak : char;
 begin
@@ -387,6 +398,7 @@ read(znak);
 write(znak);
 end;
 end.
+```
 
 W powyższym przykładzie powtarzana jest procedura wczytywania pojedynczych znaków
 z klawiatury (*read(znak)*) oraz wypisywania ich na ekran(*write(znak)*).
@@ -416,12 +428,13 @@ sekwencja instrukcji zakończonych słowem kluczowym **until** i warunkiem logic
 
 Ogólna postać pętli `repeat` przedstawiona jest poniżej:
 
-code(pascal).
+```pascal
 repeat
 {instrukcja\_1};
 {instrukcja\_2};
 {...}
 until wyr\_log;
+```
 
 Należy zwrócić uwagę, że pętla `repeat ... until` różni się od pętli `while` pod
 trzema względami:
@@ -439,7 +452,7 @@ Pętli `repeat ... until` odpowiada następujący schemat blokowy:
 
 **Przykład**
 
-code(pascal).
+```pascal
 var
 znak: char;
 begin
@@ -450,6 +463,7 @@ write("Wprowadziłeś ");
 writeln(znak);
 until znak = 'k';
 end.
+```
 
 W powyższym kodzie użytkownik proszony jest o wprowadzenie znaku.
 Znak wprowadzony przez użytkownika jest ponownie wyprowadzany na ekran.
@@ -481,9 +495,10 @@ oraz instrukcja, która ma zostać wykonana.
 
 Ogólna postać pętli `for` ze słowem kluczowym `to` przedstawiona jest poniżej.
 
-code(pascal).
+```pascal
 for indeks := war\_1 to war\_2 do
 {instrukcja\_1};
+```
 
 Pętla `for`, w której występuje słowo kluczowe `to`, wykonywana jest w następujący
 sposób: najpierw zmiennej indeksującej przypisywana jest wartość pierwszego
@@ -503,7 +518,7 @@ wykonania pętli - zmienna indeksująca musi być większa lub równa niż drugi
 
 **Przykład**
 
-code(pascal).
+```pascal
 const
 n = 5;
 var
@@ -521,6 +536,7 @@ end
 for indeks := n downto 1 do
 writeln(wektor1\[indeks\]);
 end.
+```
 
 W powyższym przykładzie użytkownik na początku
 proszony jest o wprowadzenie 5 liczb całkowitych,
@@ -600,7 +616,7 @@ co program, czyli: deklaracji stałych i zmiennych oraz definicji typów.
 w słowa kluczowe `begin` oraz `end`. Ogólna postać definicji
 procedury przedstawiona jest poniżej:
 
-code(pascal).
+```pascal
 procedure nazwa\_procedury(argument\_1 : typ\_1; argument\_2 : typ\_2, ...);
 type
 {definicje typów}
@@ -611,6 +627,7 @@ var
 begin
 {ciało procedury}
 end
+```
 
 W ciele procedury dostępne są wszystkie zmienne zadeklarowane w
 części deklaracyjnej programu, w części deklaracyjnej tej procedury,
@@ -627,12 +644,13 @@ ilości i typowi argumentów pojawiających się w sygnaturze procedury.
 
 Ogólna postać wywołania procedury jest następująca:
 
-code(pascal).
+```pascal
 nazwa\_procedury(argument\_1, argument\_2, ...);
+```
 
 Przykład wykorzystania procedury:
 
-code(pascal).
+```pascal
 program liczby;
 procedure wypisz\_liczbe(liczba : integer);
 begin
@@ -647,6 +665,7 @@ wypisz\_liczbe();
 wypisz\_liczbe('a');
 {wywołanie niepoprawne - niewłaściwy typ argumentu}
 end.
+```
 
 W powyższym programie definiujemy procedurę `wypisz_liczbe`, która
 wypisuje komunikat "Liczba posiada wartość " oraz podaje
@@ -674,12 +693,13 @@ dwukropek i typ argumentu, który jest zwracany przez funkcję.
 
 Ogólna postać definicji funkcji jest następująca:
 
-code(pascal).
+```pascal
 function nazwa\_funkcji(argument\_1 : typ\_1; argument\_2 : typ\_2, ...) : typ\_wyniku;
 {deklaracje}
 begin
 {ciało funkcji}
 end
+```
 
 W ciele funkcji dostępne są wszystkie zmienne, które wymienione były
 w opisie procedur oraz zmienna, której nazwa jest taka sama jak
@@ -695,17 +715,18 @@ ją do zmiennej, której typ jest taki sam, jak tym wartości
 zwracanej przez funkcję. Dla ogólnej funkcji zdefiniowanej powyżej
 moglibyśmy użyć następującego wywołania:
 
-code(pascal).
+```pascal
 var
 zmienna : typ\_wyniku;
 {deklaracja funkcji - j.w.}
 begin
 zmienna = nazwa\_funkcji(argument\_1, argument\_2, ...);
 end.
+```
 
 Przykład wykorzystania funkcji:
 
-code(pascal).
+```pascal
 program potega;
 var
 wartosc : integer;
@@ -725,6 +746,7 @@ wartosc := potega(3,4);
 write("Czwartą potęgą liczby 3 jest : ");
 writeln(wartosc);
 end.
+```
 
 Wykonanie powyższego programu wygląda następująco:
 
@@ -734,7 +756,7 @@ Wykonanie powyższego programu wygląda następująco:
 Struktura programu
 ------------------
 
-code(pascal).
+```pascal
 program pierwszy\_program;
 {nazwa programu}
 const
@@ -752,3 +774,4 @@ begin
 {...}
 end.
 {koniec programu}
+```

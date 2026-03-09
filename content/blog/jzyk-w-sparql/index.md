@@ -10,10 +10,11 @@ Moja przygoda z SPARQL zacząłe się od [DBpedia.org](http://dbpedia.org) - sfo
 Chciałem zrobić coś naprawdę prostego - wydobyć wszystkie pojęcia, która miałyby określoną wartość atrybuty `rdfs:label`.
 Szybko jednak okazało się, że proste zapytanie, które powinno zwrócić obiekty o etykiecie 'Berlin':
 
-code.
+```
 SELECT \* WHERE {
 ?x rdfs:label "Berlin"
 }
+```
 
 nie daje żadnych sensownych rezultatów. Domyślałem się, że problem leży w tym, że predykat `rdfs:label`
 może posiadać wiele wartości, dla wielu języków wykorzystywanych w Wikipedii. Niestety znalezienie
@@ -23,10 +24,11 @@ na stronach w3.org niestety uszła mojej uwadze w trakcie pobieżnego czytania.
 
 Dopiero dalsze googlowanie przywiodło mnie do następującego rozwiązania:
 
-code.
+```
 SELECT \* WHERE {
 ?x rdfs:label "Berlin"@en
 }
+```
 
 Określenie języka poprzez dodanie za łańcuchem znaków małpy oraz jego skrótu, dało pożądany rezultat,
 tzn. zwróciło wszystkie obiekty, których etykieta w języku angielskim to "Berlin".

@@ -26,9 +26,10 @@ Jako rezultat tej instrukcji zwracana jest drzewo będące wynikiem zastąpienia
 
 #### 23.1
 
-code(lisp).
+```lisp
 (subst 'franek 'zenek '((franek poszedl na zakupy)
 (franek kupil mleko)))
 =&gt; ((zenek poszedl na zakupy)(zenek kupil mleko))
+```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 22](/dydaktyka/lisp/lekcja-22) | [Lekcja 24](/dydaktyka/lisp/lekcja-24)

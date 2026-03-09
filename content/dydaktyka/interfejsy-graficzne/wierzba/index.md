@@ -18,8 +18,9 @@ Na serwerze **`wierzba.wzks.uj.edu.pl`** zainstalowane są Railsy w wersji **`2.
 Na specjalne życzenie mogą być zainstalowane Railsy w innej wersji, ale zdecydowanie zalecane jest używanie wersji `2.3.5`.
 Aby zmienić używaną wersję Railsów w aplikacji, należy w pliku **`config/environment.rb`** odnaleźć fragment:
 
-code(ruby).
+```ruby
 RAILS\_GEM\_VERSION = '2.3.5' unless defined? RAILS\_GEM\_VERSION
+```
 
 i zamienić faktyczną wartość **`RAILS_GEM_VERSION`**, na tę przedstawioną powyżej.
 
@@ -65,8 +66,9 @@ Tak skonfigurowana aplikacja dostępna jest pod adresem:
 Dodatkowo, zmiany w plikach aplikacji widoczne są tylko po jej zrestartowaniu, które wykonuje się poprzez utworzenie pliku **`restart.txt`** w katalogu
 **`tmp`** aplikacji, najprościej za pomocą komendy:
 
-code(bash).
+```bash
 $ touch tmp/restart.txt
+```
 
 która wykonywana jest w głównym katalogu aplikacji (czyli w powyższym przypadku w ~/rails\_projekt).
 

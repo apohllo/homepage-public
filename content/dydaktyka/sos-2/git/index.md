@@ -85,9 +85,10 @@ W rozproszonych repozytoriach kodu źródłowego klienci nie dostają dostępu t
 
 Jeśli po raz pierwszy chcemy skorzystać z GITa na naszym komputerze, musimy ustawić dane, które pozwolą na identyfikację wprowadzanych przez nas zmian.
 
-code(bash).
+```bash
 $ git config --global user.name "Imię Nazwisko"
 $ git config --global user.email "xxx@gmail.com"
+```
 
 Uwaga: $ reprezentuje znak zachęty - aby wykonać polecenie **nie wprowadzamy go** w linii poleceń.
 
@@ -95,39 +96,45 @@ Będąc w katalogu w którym chcemy mieć projekt, mamy do wyboru dwa wyjścia.
 
 #### Inicjacja nowego repozytorium
 
-code(bash).
+```bash
 $ git init
+```
 
 #### Klonowanie
 
 Alternatywnie, możemy sklonować istniejący projekt na swój komputer.
 
-code(bash).
+```bash
 $ git clone https://github.com/jquery/jquery.git
+```
 
 #### Dodawanie plików, wprowadzanie zmian
 
 Po zakończeniu pracy sprawdzamy które pliki zostały zmodyfikowany.
 
-code(bash).
+```bash
 $ git status
+```
 
 Następuje wyraźny podział na pliki w indeksie (ang. staging), oraz poza nim (poczekalnia). Gdy chcemy dodać pliki z poczekalni (ang. unstaged) do indeksu, wpisujemy polecenie:
 
-code(bash).
+```bash
 git add plik1 plik2 plik3
+```
 
 Alternatywnie, możemy dodać wszystkie pliki w katalogu.
 
-code(bash).
+```bash
 $ git add .
+```
 
 #### Commitowanie
 
 Commit to dodanie zmian z indeksu do repozytorium.
 
-code(bash).
+```bash
 $ git commit -m "Wiadomość"
+```
 
 ### Wieloosobowy dostęp do repozytorium
 
@@ -143,8 +150,9 @@ Wszystko, co musimy zrobić to usunięcie skonfliktowanego fragmentu z pliku, po
 
 Sprawdzamy listę zdalnych repozytoriów za pomocą polecenia
 
-code(bash).
+```bash
 $ git remote -v
+```
 
 Jeśli nasze repozytorium zostało sklonowane z serwera, pojawi się URL obok nazwy repozytorium *origin*.
 
@@ -152,27 +160,31 @@ Jeśli nasze repozytorium zostało sklonowane z serwera, pojawi się URL obok na
 
 Możemy dodać nowe repozytorium za pomocą polecenia
 
-code(bash).
+```bash
 $ git remote add zdalne git://github.com/test/zdalne.git
+```
 
 #### Wysyłanie zmian do innego repozytorium
 
 Podane polecenie prześle zmiany z naszej podstawowej gałęzi lokalnej (master) na domyślny zdalny serwer (origin).
 
-code(bash).
+```bash
 $ git push origin master
+```
 
 #### Pobieranie zmian z innego repozytorium
 
 Aby uzyskać zmiany ze zdalnego repozytorium korzystamy z:
 
-code(bash).
+```bash
 $ git fetch zdalne
+```
 
 Możemy również skorzystać z polecenia *pull*, które alternatywnie złączy zmiany z serwera z kopią roboczą nad którą aktualnie pracujemy, np.
 
-code(bash).
+```bash
 $ git pull origin master
+```
 
 ### Gałęzie kodu (branch)
 
@@ -182,9 +194,10 @@ Gałęzie kodu służą do prowadzenia osobnych wątków projektu, które na ko�
 
 Domyślną gałęzią jest *master*. Aby stworzyć gałąż *testowa*, wykonujemy następujące polecenia:
 
-code(bash).
+```bash
 $ git branch testowa
 $ git checkout testowa
+```
 
 W tym momencie dokonywane zmiany pojawią się tylko na gałęzi *testowa*.
 
@@ -192,14 +205,16 @@ W tym momencie dokonywane zmiany pojawią się tylko na gałęzi *testowa*.
 
 Kiedy stwierdzimy, że gałąź *testowa* nadaje się do połączenia z głównym wątkiem projektu, możemy je połączyć.
 
-code(bash).
+```bash
 $ git checkout master
 $ git merge testowa
+```
 
 Oraz usunąć nieużywaną gałąź.
 
-code(bash).
+```bash
 $ git branch -d testowa
+```
 
 ### Przydatne polecenia
 
@@ -207,10 +222,11 @@ $ git branch -d testowa
 
 W wypadku, gdy zapomnieliśmy dodać pliku do wysłanego commita, możemy wciąż go dodać za pomocą flagi ammend.
 
-code(bash).
+```bash
 $ git commit -m 'Commit który powinien być kompletny'
 $ git add zapomniany\_plik
 $ git commit --ammend
+```
 
 #### `git stash`
 
