@@ -40,19 +40,18 @@ argumenty, a na stos trafia wynik działania. Ostateczny wynik jest odczytywany 
 
 Przykładowo dla wyrażenia '2 3 4 + \*', zmiany zawartości stosu wyglądają następująco:
 
-```
+code.
 2 &lt;= 2
 2 3 &lt;= 3
 2 3 4 &lt;= 4
 2 7 &lt;= + (3 + 4)
 14 &lt;= \* (2 \* 7)
-```
 
 Wynik: 14
 
 Poniżej przedstawiony jest kod w języku Ruby, który pozwala na ewaluację wyrażenia w ONP przekazanego jako argument programu (uwaga - zakłada się, że wszystkie elementy oddzielone są pojedynczymi spacjami):
 
-```ruby
+code(ruby).
 expr = ARGV\[0\]
 stack = \[\]
 expr.split(/\\s+/).each do |token|
@@ -77,7 +76,6 @@ stack.push token
 end
 end
 puts stack.pop
-```
 
 ### Konwersja z notacji konwencjonalnej do ONP
 
@@ -103,22 +101,20 @@ Następnie analizując zawartość wyrażenia należy wykonywać następujące a
 
 Przykładowo:
 
-```
+code.
 (2 + 3) \* 4
 2 3 + 4 \*
-```
 
 Zawartość stosu:
-```
+code.
 ( &lt;= (
 ( + &lt;= +
 &lt;= ) zdjęcie ze stosu + i (
 \* &lt;= \*
-```
 
 Poniższy kod w Ruby realizuję konwersję z systemu konwencjonalnego do ONP:
 
-```ruby
+code(ruby).
 expr = ARGV\[0\]
 result = \[\]
 stack = \[\]
@@ -150,4 +146,3 @@ while (token = stack.pop)
 result &lt;&lt; token
 end
 puts result.join(" ")
-```

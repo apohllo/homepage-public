@@ -19,10 +19,7 @@ Definiowanie schematu bazy danych
 ---------------------------------
 
 Plecenie **CREATE TABLE** służy do tworzenia schematów table:
-
-    CREATE TABLE table_name (column1 column1_type, column2 column2_type, ..., 
-      PRIMARY KEY(key_col1, key_col2, ...) );
-
+CODEBLOCK\_PLACEHOLDER\_1
 **table\_name** to nazwa tworzonej tabeli. **column1**, **column2**, ... to
 nazwy kolumn występujących w tabeli. **column1\_type**, **column2\_type**, ...
 to domeny (zbiory wartości) poszczególnych kolumn (np. VARCHAR, INTEGER).
@@ -32,9 +29,7 @@ tworzonej tabeli.
 #### Przykład
 
 Polecenie:
-
-    CREATE TABLE Osoby(Imie VARCHAR, Nazwisko VARCHAR, PESEL INTEGER, 
-      PRIMARY KEY(PESEL));
+CODEBLOCK\_PLACEHOLDER\_2
 
 tworzy tablę **Osoby**, która zawiera kolumny:
 
@@ -66,10 +61,7 @@ Język SQL zawiera polecenia odpowiadające tym operacjom:
 
 Polecenie **INSERT** pozwala **dodawać nowe dane** do instancji bazy danych.
 Polecenie to występuje w dwóch postaciach:<br/>
-
-    INSERT INTO table_name SET a = value1, b = value2, ...;
-    INSERT INTO table_name VALUES (value1, value2, ...);
-
+CODEBLOCK\_PLACEHOLDER\_3
 Pierwsza postać polecenia pozwala określić wartości poszczególnych
 atrybutów poprzez ich nazwę. W drugiej postaci wykorzystywana jest
 domyślna kolejność atrybutów, zdefiniowana w schemacie określonej relacji.
@@ -77,10 +69,7 @@ domyślna kolejność atrybutów, zdefiniowana w schemacie określonej relacji.
 #### Przykład
 
 Dla relacji Osoby(Imie, Nazwisko, PESEL), polecenia:<br/>
-
-    INSERT INTO Osoby SET Imie = "Jan", Nazwisko = "Kowalski", PESEL = 123654;
-    INSERT INTO Osoby VALUES ("Jan", "Kowalski", 123654);
-
+CODEBLOCK\_PLACEHOLDER\_4
 powodują dodanie do bazy nowej informacji o osobie, której imię to "Jan", nazwisko "Kowalski",
 a pesel 123654.
 
@@ -88,9 +77,7 @@ a pesel 123654.
 
 Polecenie **DELETE** pozwala na **usuwanie informacji** z bazy danych.
 Zazwyczaj stosuje się je w postaci:<br/>
-
-    DELETE FROM table_name [WHERE condition] [LIMIT x]
-
+CODEBLOCK\_PLACEHOLDER\_5
 Użycie polecenia **bez klauzuli WHERE oraz LIMIT** powoduje usunięci **wszystkich**
 wierszy znajdujących się w tabeli.<br/>
 Klauzula WHERE pozwala określić warunek (np. saldo &lt; 0), który muszą spełniać wiersze,
@@ -108,18 +95,14 @@ Dla relacji Osoby(Imie, Nazwisko, PESEL), która zawiera krotki:<br/>
 |Jan|Jankowski|444555|
 
 polecenie:<br/>
-
-    DELETE FROM Osoby WHERE Imie = 'Jan' LIMIT 1;
-
+CODEBLOCK\_PLACEHOLDER\_6
 spowoduje usunięcie wyłącznie pierwszej krotki.
 
 ### UPDATE
 
 Polecenie **UPDATE** pozwala na **aktualizację danych** zawartych w instancji bazy
 danych. Polecenie to przyjmuje zazwyczaj postać:
-
-    UPDATE table_name SET a = value1, b = value2 [WHERE condition] [LIMIT x]
-
+CODEBLOCK\_PLACEHOLDER\_7
 gdzie znaczenie klauzul WHERE i LIMIT jest takie samo jak w przypadku polecenie
 DELETE.
 
@@ -132,9 +115,7 @@ Dla relacji Osoby(Imie, Nazwisko, PESEL), która zawiera krotki:<br/>
 |Jan|Jankowski|444555|
 
 polecenie:<br/>
-
-    UPDATE Osoby SET Imie = "Wojciech" WHERE Nazwisko = "Kowalski" LIMIT 1;
-
+CODEBLOCK\_PLACEHOLDER\_8
 spowoduje zamianę imienia "Jan" na "Wojciech" wyłącznie w pierwszej krotce.
 
 ### SELECT (pojedyncza tabela)
@@ -144,9 +125,7 @@ znajdujących się w bazie danych.
 
 Jego omówienie zaczniemy od przypadku wyświetlenia danych znajdujących się w jednej
 tabeli. W tym prostym przypadku składnia polecenia jest następująca:<br/>
-
-    SELECT column1, column2, ... FROM table_name [WHERE condition] [ORDER BY o_column] [LIMIT x,y];
-
+CODEBLOCK\_PLACEHOLDER\_9
 gdzie:
 
 1.  **column1, column2,...** to nazwy kolumn, których zawartość ma być wyświetlona jako wynik zapytania.
@@ -189,9 +168,7 @@ Niech dana będzie tabela Osoby(Imie, Nazwisko, PESEL):<br/>
 
 <br/>
 **Polecenie:**
-
-    SELECT Imie, Nazwisko FROM Osoby WHERE PESEL = 123;
-
+CODEBLOCK\_PLACEHOLDER\_10
 da w wyniku:<br/>
 
 |          |              |
@@ -202,9 +179,7 @@ da w wyniku:<br/>
 
 <br/>
 **Polecenie:**
-
-    SELECT * FROM Osoby WHERE Nazwisko LIKE '%j%';
-
+CODEBLOCK\_PLACEHOLDER\_11
 da w wyniku:<br/>
 
 |          |              |           |
@@ -215,9 +190,7 @@ da w wyniku:<br/>
 
 <br/>
 **Polecenie:**
-
-    SELECT * FROM Osoby ORDER BY PESEL, Nazwisko DESC;
-
+CODEBLOCK\_PLACEHOLDER\_12
 da w wyniku:<br/>
 
 |          |              |           |
@@ -248,9 +221,7 @@ tabeli.
 
 W języku SQL występuje specjalna **klauzula JOIN**, która pozwala rozwiązać problem tego
 rodzaju. Składnia polecenia SELECT z klauzulą JOIN jest następująca:
-
-    SELECT * FROM table1 JOIN table2 ON condition ...
-
+CODEBLOCK\_PLACEHOLDER\_13
 **condition** określa sposób łączenia krotek. Zazwyczaj w warunku będzie
 wymagało się, żeby wartość kolumny w jednej tabeli była taka sama jak wartość
 kolumny w innej tabeli (table1.columnA = table2.columnB).
@@ -296,10 +267,7 @@ Tabela Adresy(PESEL, Ulica, Nr)
 
 <br/>
 **Dla zapytania:**
-
-    SELECT Imie, Nazwisko, Osoby.PESEL, Adresy.PESEL, Ulica, Nr FROM
-      Osoby JOIN Adresy ON Osoby.PESEL = Adresy.PESEL
-
+CODEBLOCK\_PLACEHOLDER\_14
 otrzymamy wynik:
 | **Imie** | **Nazwisko** | **Osoby.PESEL** | **Adresy.PESEL** | **Ulica** | **Nr** |
 | Jan | Wojtkiewicz | 123 | 123 | sobieskiego | 17 |
@@ -309,10 +277,7 @@ otrzymamy wynik:
 
 <br/>
 **Dla zapytania:**
-
-    SELECT Imie, Nazwisko, Osoby.PESEL, Adresy.PESEL, Ulica, Nr FROM
-      Osoby LEFT JOIN Adresy ON Osoby.PESEL = Adresy.PESEL
-
+CODEBLOCK\_PLACEHOLDER\_15
 otrzymamy wynik:
 | **Imie** | **Nazwisko** | **Osoby.PESEL** | **Adresy.PESEL** | **Ulica** | **Nr** |
 | Jan | Andrzejewski | 345 | NULL | NULL | NULL |
@@ -323,10 +288,7 @@ otrzymamy wynik:
 
 <br/>
 **Dla zapytania:**
-
-    SELECT Imie, Nazwisko, Osoby.PESEL, Adresy.PESEL, Ulica, Nr FROM
-      Osoby RIGHT JOIN Adresy ON Osoby.PESEL = Adresy.PESEL
-
+CODEBLOCK\_PLACEHOLDER\_16
 otrzymamy wynik:
 | **Imie** | **Nazwisko** | **Osoby.PESEL** | **Adresy.PESEL** | **Ulica** | **Nr** |
 | Jan | Wojtkiewicz | 123 | 123 | sobieskiego | 17 |

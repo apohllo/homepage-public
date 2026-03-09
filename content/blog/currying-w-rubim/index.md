@@ -20,26 +20,23 @@ funkcję, która dopiero po dostarczeniu brakujących argumentów zwróci konkre
 
 W chwili gdy poznałem tę funkcję Haskella, uświadomiłem sobie, że w Rubim nie mamy takiej możliwości, tzn.
 
-```ruby
+code(ruby).
 plus = -&gt;(x,y) { x + y }
 plus\_two = plus\[2\] \# ArgumentError: wrong number of arguments (1 for 2)
-```
 
 Okazuje się jednak, że klasa Proc definiuje wywołanie `curry`, które realizuje tę funkcjonalność.
 Zatem korzystając z tego wywołanie możemy osiągnąć pożądany efekt:
 
-```ruby
+code(ruby).
 plus = -&gt;(x,y) { x + y }
 plus\_two = plus.curry\[2\]
 plus\_two\[3\] \# =&gt; 5
 plut\_two\[5\] \# =&gt; 7
-```
 
 Co więcej - uzyskana w ten sposób funkcja nie wymaga wywoływania `curry` w celu częściowej aplikacji argumentów:
 
-```ruby
+code(ruby).
 multiply = -&gt;(x,y,z) { x \* y \* z }
 multiply\_2 = multiply.curry\[2\]
 multiply\_2\_3 = multiply\_2\[3\]
 multiply\_2\_3\[5\] \#=&gt; 30
-```

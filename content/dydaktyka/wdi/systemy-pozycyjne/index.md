@@ -28,14 +28,7 @@ się kolejne reszty, a poniżej - kolejne wyniki dzielenia całkowitego.
 
 Przykład
 
-    101 | 1
-     50 | 0
-     25 | 1
-     12 | 0
-      6 | 0
-      3 | 1
-      1 | 1
-      0 |
+CODEBLOCK\_PLACEHOLDER\_1
 
 Wynik: 1100101<sub>2</sub>
 
@@ -63,17 +56,7 @@ Przykład
 
 Zamiana 0,1
 
-     0 | 1
-       ,
-     0 | 2
-     0 | 4
-     0 | 8
-     1 | 6
-     1 | 2
-     0 | 4
-     0 | 8
-     1 | 6
-     ...
+CODEBLOCK\_PLACEHOLDER\_2
 
 Wynik 0,0(0011)<sub>2</sub>
 
@@ -90,12 +73,8 @@ Dokonując konwersji możemy zatem każdą pozycję lub grupę pozycji konwertow
 
 Przykład
 
-        A    B    C
-     1010 1011 1100
-
+CODEBLOCK\_PLACEHOLDER\_3
 ABC<sub>16</sub> = 101010111100<sub>2</sub>
 
-     1000 0011 0001
-        8    3    1
-
+CODEBLOCK\_PLACEHOLDER\_4
 100000110001<sub>2</sub> = 831<sub>16</sub>

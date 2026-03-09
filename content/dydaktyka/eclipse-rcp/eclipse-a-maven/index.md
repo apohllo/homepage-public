@@ -70,11 +70,10 @@ się w centralnym repozytorium.
 
 Zadanie to można wykonać wywołując poniższą komendę:
 
-```
+code.
 mvn eclipse:to-maven -DeclipseDir=/opt/eclipse \\
 -DdeployTo=repository\_id::default::scp://mydomain.com/path/to/maven/repository \\
 -DstripQualifier=true
-```
 
 Wywołanie to posiada więcej opcji, ale najistotniejsze są trzy wymienione
 powyżej:
@@ -105,9 +104,8 @@ Nexusa. Jest on dystrybuowany w postaci jara dostępnego pod adresem
 
 Po ściągnięciu nexusa możemy utworzyć indeks wywołując następujące polecenie:
 
-```
+code.
 java -jar nexus-indexer-1.0.0-beta-2-cli.jar -o -z -t full -i index -n my-repo -r /path/to/maven/repository
-```
 
 Znaczenie poszczególnych opcji jest następujące:
 

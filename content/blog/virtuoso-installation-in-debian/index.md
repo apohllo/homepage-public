@@ -24,10 +24,9 @@ Virtuoso OS installation
 The installation of Virtuoso OpenSource is easy, since there is a Debian package available in the default package
 tree. So the only thing to do is to type `apt-get install virtuos-server` in the console:
 
-```bash
+code(bash).
 $ sudo apt-get install virtuoso-server
 ...
-```
 
 During the installation, the user will be asked for the password of the administrative account.
 If it is provided, the server will start automatically, when it is installed. This password will
@@ -54,9 +53,8 @@ be replaced with the actual name of the user in the system, e.g. `fred`.
 
 To make the changes effective, the user has to restart the server by issuing the following command:
 
-```bash
+code(bash).
 $ sudo /etc/init.d/virtuoso-opensource-6.1 restart
-```
 
 Loading the DBpedia data
 ------------------------
@@ -65,9 +63,8 @@ First of all we have to download some data from the [DBpedia download page](http
 (or any other providing RDF triples), to make sure we have something to load. For example
 we could download all the English DBpedia article titles in the form of n-triples.
 
-```bash
+code(bash).
 $ wget http://downloads.dbpedia.org/3.6/en/labels\_en.nt.bz2
-```
 
 This will take several minutes, since the file is more than 100 MB. You can download any other
 dataset to experiment with, but the rest of the tutorial will assume, that the labels\_en.nt.bz2 is available.
@@ -75,41 +72,37 @@ dataset to experiment with, but the rest of the tutorial will assume, that the l
 It's important to note that the data is available in bzip2 format, so we have to
 install the bzip2 tools, in order to extract the data:
 
-```bash
+code(bash).
 $ sudo apt-get install bzip2
 ...
 $ bzip2 -d labels\_en.nt.bz2
 ...
-```
 
 The last important thing to download is the [rdfloader script](http://virtuoso.openlinksw.com/dataspace/dav/wiki/Main/VirtBulkRDFLoaderScript) Since it is not
 available as a separate file on the wiki, I've put it on my server for convenience (and I hope not to be
 sued by OpenLink ;-). So downloading it is as simple as:
 
-```bash
+code(bash).
 $ wget http://apohllo.pl/texts/rdfloader.sql
 ...
-```
 
 When we have all the necessary files, we can start the Virtuoso client. We have to provide the
 password, that was selected in the installation phase.
 
-```bash
+code(bash).
 $ isql-vt -U dba
 Enter password for dba:
 Connected to OpenLink Virtuoso
 ...
 SQL&gt;
-```
 
 Virtuoso is a regular SQL database with support for RDF, hance the SQL prefix in the client.
 
 To load the DBpedia data into the server first we have to load the rdfloader script:
 
-```
+code.
 SQL&gt; load rdfloader.sql;
 ...
-```
 
 Then we can define the data we wish to be loaded into the server. This is done via call to `ld_dir`
 command defined in the script. This command takes three arguments:
@@ -127,17 +120,15 @@ was issued in. So in the case of problems, it seems to be the first option to ca
 
 If we wish to load the data downloaded in the previous steps we have to issue the following command:
 
-```
+code.
 SQL&gt; ld\_dir('/home/username','\*.nt','http://dbpedia.org');
 Done -- 2 msec.
-```
 
 Surprisingly this command won't load the data. This is done via call to `rdf_loader_run`:
 
-```
+code.
 SQL&gt; rdf\_loader\_run;
 ...
-```
 
 This command can take much time (**even several hours!**), especially if you wish to load much of the contents of DBpedia.
 So please be patient.
@@ -148,7 +139,7 @@ Using the data
 When the data has been loaded it's time to issue some queries to server, to check if everything works fine.
 The easiest way is to start the sparql client and issue a simple select, such as:
 
-```
+code.
 SQL&gt; sparql select ?s, ?p, ?o from &lt;http://dbpedia.org&gt; where {?s ?p ?o} limit 5;
 s
 p
@@ -161,7 +152,6 @@ http://www.dbpedia.org/resource/AccessibleComputing
 http://www.w3.org/2000/01/rdf-schema\#label
 AccessibleComputing
 ...
-```
 
 If the result looks as above the DBpedia data is in the Virtuoso instance!
 Now you can issue more complex queries (assuming you have loaded more data than the mere labels).

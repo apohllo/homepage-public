@@ -20,11 +20,10 @@ skorzystać z argumentów opcjonalnych. Jeśli w wywołaniu funkcji nie pojawią
 opcjonalne, to zostaną im przypisane wartości domyślne. Ten mechanizm czyni kod znacznie czytelniejszym
 i zwięzłym. To, że argumenty jakiejś funkcji są opcjonalne zapisujemy w następujący sposób
 
-```lisp
+code(lisp).
 (defun f (arg1 arg2 arg3 ... argn
 &optional (o-arg1 val1) (o-arg2 val2) ...(o-argm valm))
 body)
-```
 
 Argumenty - o-arg1 ... o-argm występujące po słowie kluczowym &optional, traktowane są jak
 argumenty opcjonalne. Jeśli wywołanie funkcji zawiera mniej argumentów niż n+m, to argumentom
@@ -35,7 +34,7 @@ to jego wartością domyślną jest nil.
 
 #### 17.1
 
-```lisp
+code(lisp).
 (defun para (x &optional y)
 (format t "~&Wartosc x: ~S" x)
 (format t "~&Wartosc y: ~S" y)
@@ -48,6 +47,5 @@ Wartosc y: 5
 Wartosc x: 3
 Wartosc y: nil
 =&gt; nil
-```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 16](/dydaktyka/lisp/lekcja-16) | [Lekcja 18](/dydaktyka/lisp/lekcja-18)

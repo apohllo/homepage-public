@@ -19,13 +19,7 @@ Wyobraźmy sobie następują scenariusz: w Javie wywołujemy kod Rubiego, który
 pewne metody Javy - klasyczny przypadek callbacków. Wydawać by się mogło, że jeśli nastąpi
 jakiś błąd w javowym callbacku, to interpreter Rubiego zakomunikuje to w zrozumiały sposób.
 Nic bardziej mylnego. W moim przypadku pojawił się komunikat:
-
-
-    can't convert nil into String (TypeError)
-    :127:in `process'
-    <script>:127:in `process'
-    ...
-    </code>
+CODEBLOCK\_PLACEHOLDER\_1
 
 Ponieważ metoda, która była wywoływana z poziomu Rubiego przyjmowała jako argument
 Stringa, myślałem, że przekazywany parametr jest nil'em. Kiedy jednak przeanalizowałem

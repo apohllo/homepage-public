@@ -51,7 +51,7 @@ zastosowania tej techniki. Wykorzystana jest w nim metoda **`class_eval`**,
 która przyjmuje kod w postaci bloku lub łańcucha znaków i
 powoduje dołączenie go do klasy, w kontekście której jest wywoływana:
 
-```ruby
+code(ruby).
 class Alphabet
 ('a'..'z').each do |letter|
 class\_eval &lt;&lt;-END
@@ -66,7 +66,6 @@ alpha.a
 \#=&gt; "a"
 alpha.b
 \#=&gt; "b"
-```
 
 Uwaga
 
@@ -81,7 +80,7 @@ wywoływana jest wielokrotnie dla łańcucha znaków uzupełnianego
 kolejnymi literami alfabetu. Powyższy kod w tradycyjny sposób
 można by zapisać następująco:
 
-```ruby
+code(ruby).
 class Alphabet
 def a
 "a"
@@ -94,7 +93,6 @@ def c
 end
 \# itd.
 end
-```
 
 Widzimy zatem, że kod, który zapisany w tradycyjny sposób byłby bardzo
 długi, z wykorzystaniem metaprogramowania, uległ znacznemu skróceniu.
@@ -130,7 +128,7 @@ Przyjrzyjmy się najpierw
 dwóm definicjom tej samej metody z wykorzystaniem słowa kluczowego
 `def` oraz metody `define_method`:
 
-```ruby
+code(ruby).
 class Hello
 def say(message)
 puts "Hello " + message
@@ -141,7 +139,6 @@ end
 end
 Hello.new.say "metaworld"
 \#=&gt; "Hello metaworld"
-```
 
 W powyższym przykładzie obie definicje metody `say` są sobie równoważne.
 Definicja wykorzystująca wywołanie `define_method` jest oczywiście
@@ -150,7 +147,7 @@ bloku, co czyni jej zapis bardziej skomplikowanym. Oczywiście stosowanie
 tego wywołania w tej postaci mija się z celem. Możemy je natomiast
 wykorzystać do poprawienia wcześniejszego przykładu z alfabetem:
 
-```ruby
+code(ruby).
 class Alphabet
 ('a'..'z').each do |letter|
 class\_eval do
@@ -165,7 +162,6 @@ alpha.a
 \#=&gt; "a"
 alpha.b
 \#=&gt; "b"
-```
 
 Bingo! Możemy zatem definiować nowe metody w czasie wykonania programu.
 Co więcej - ich nazwa może być również "obliczana". Zatem pierwsze
@@ -195,9 +191,8 @@ klasy, lecz jej **klasy singletonowej**. Reszta pozostaje identyczna:
 Jak zatem można *dostać się do klasy singletonowej danej klasy?*
 Istnieje idiom Ruby, który służy właśnie do tego:
 
-```ruby
+code(ruby).
 class &lt;&lt; self; self; end
-```
 
 Wywołany w kontekście klasy zwraca jej klasę singletonową.
 
@@ -211,7 +206,7 @@ odnosi się właśnie do niej. W wyniku ewaluacji całego wyrażenia
 zostaje właśnie zwrócona obiekt, który ukrywa się pod drugim słowem
 `self`, którym będzie właśnie poszukiwana klasa singletonowa.
 
-```ruby
+code(ruby).
 class Person
 def self.meta
 class &lt;&lt; self
@@ -221,7 +216,6 @@ end
 end
 Person.meta
 \#=&gt; \#<Class:Person>
-```
 
 W powyższym przykładzie w klasie `Person` zdefiniowana jest metoda klasowa
 `meta`. Jej ciało stanowi wyrażenie pozwalające na dostęp do klasy
@@ -242,7 +236,7 @@ metoda `class_eval` wywoływana jest w kontekście klasy singletonowej,
 a nie danej klasy. Zatem nasza definicja klasy `Alphabet` będzie
 wyglądała następująco:
 
-```ruby
+code(ruby).
 class Alphabet
 ('a'..'z').each do |letter|
 (class &lt;&lt; self; self; end).class\_eval do
@@ -256,11 +250,10 @@ Alphabet.a
 \#=&gt; "a"
 Alphabet.b
 \#=&gt; "b"
-```
 
 Powyższy kod zapisany w sposób tradycyjny wygląda następująco:
 
-```ruby
+code(ruby).
 class Alphabet
 def self.a
 "a"
@@ -270,7 +263,6 @@ def self.b
 end
 \# itd.
 end
-```
 
 Poznaliśmy zatem podstawowe sposoby "metadodawania" metod instancyjnych
 i klasowych. Najwyższy czas aby pokazać jakieś ciekawe, nietrywialne
@@ -302,7 +294,7 @@ Dodanie do niej odpowiednich metod, spowoduje, że będą one mogły
 być wykorzystywane dokładnie tak samo, jak wykorzystywane są wyrażenia
 `attr_reader` i pozostałe.
 
-```ruby
+code(ruby).
 class Class
 def meta
 class &lt;&lt; self; self; end
@@ -343,7 +335,6 @@ B.instances
 \#=&gt; 1
 A.instances
 \#=&gt; 1
-```
 
 W powyższym przykładzie w klasie `Class` definiowane są metody `cattr_reader`,
 `cattr_writer` oraz `cattr_accessor`, zgodnie z wcześniejszą propozycją.
@@ -381,7 +372,7 @@ rozdziału - nie powinniśmy przesadzać z tymi wszystkimi magicznymi
 własnościami języka. Za przesadę uważam następujące rozwiązanie przedstawionego
 problemu:
 
-```ruby
+code(ruby).
 class Class
 def meta
 class &lt;&lt; self; self; end
@@ -396,7 +387,6 @@ end
 end
 end
 end
-```
 
 Oczywiście jeśli chcemy wygrać konkurs na */-/4xor4* roku, to możemy
 tworzyć konstrukcje tego rodzaju. Niestety bardzo ujemnie wpływają one
@@ -412,7 +402,7 @@ wyrazić w nieco bardziej rozwlekły sposób, prezentując jednocześnie
 pewne metody ważna w metaprogramowaniu. Przyjrzyjmy się
 poniższemu kodowi:
 
-```ruby
+code(ruby).
 class Class
 def meta
 class &lt;&lt; self; self; end
@@ -440,7 +430,6 @@ cattr\_reader(\*names)
 cattr\_writer(\*names)
 end
 end
-```
 
 Oczywiście powyższy kod realizuje to samo zadanie co wcześniej.
 Na czym zatem polega różnica? Otóż nie idziemy w nim na skróty
@@ -537,7 +526,7 @@ Drugie jest odwrotnością pierwszego.
 
 Weźmy klasyczny przykład z koszykiem:
 
-```ruby
+code(ruby).
 class Item &lt; ActiveRecord::Base
 belongs\_to :cart
 end
@@ -549,7 +538,6 @@ item1 = Item.new
 item2 = Item.new
 my\_cart.items &lt;&lt; item1
 my\_cart.items &lt;&lt; item2
-```
 
 W powyższym przykładzie definiowane są dwie klasy dziedziczące
 z `ActiveRecord::Base`: `Item` oraz `Cart`. Pierwsza z nich
@@ -669,7 +657,7 @@ jeśli jakaś metoda jest definiowana dwa razy, to zawsze wykorzystywana
 jest ta definicja, która pojawiła się później (która później została
 wczytana przez interpreter):
 
-```ruby
+code(ruby).
 class Changeable
 def my\_name
 "Changeable"
@@ -688,7 +676,6 @@ end
 end
 changeable.my\_name
 \#=&gt; "Who knows my name?"
-```
 
 Dzięki tej własności języka możemy w zasadzie zmodyfikować każdy fragment
 programu, *nie modyfikując a jedynie dodając* nowy kod źródłowy.
@@ -777,12 +764,11 @@ W wyniku jego wywołania, w katalogu `vendor/plugins/acts_as_timed`
 pojawia się m.in. plik `init.rb`, który modyfikujemy w sposób
 następujący:
 
-```ruby
+code(ruby).
 require 'acts\_as\_timed'
 class ActiveRecord::Base
 include Apohllo::Acts::Timed
 end
-```
 
 Na początku dołączany jest (jeszcze niezdefiniowany) plik `acts_as_timed.rb`
 z katalogu `vendor/plugins/acts_as_timed/lib`. Dalej zaś do
@@ -791,7 +777,7 @@ moduł `Timed` znajdujący się w przestrzeni nazw `Apohllo::Acts::`.
 
 Poniżej przedstawiona jest zawartość pliku `acts_as_timed.rb`:
 
-```ruby
+code(ruby).
 module Apohllo
 module Acts
 module Timed
@@ -828,7 +814,6 @@ end
 end \# Timed
 end \# Acts
 end \# Apohllo
-```
 
 W powyższym kodzie kilka rzeczy wymaga wyjaśnienie - zacznijmy od
 najprostszych.
@@ -861,7 +846,7 @@ zostanie wzbogacona o metody klasowe znajdujące się w module
 jako metody klasowe a nie instancyjne. Pokazane jest to na poniższym
 przykładzie:
 
-```ruby
+code(ruby).
 module A
 def a
 "a"
@@ -883,16 +868,14 @@ c.a
 \# NameError...
 C.a
 \#=&gt; "a"
-```
 
 Teoretycznie zatem zamiast stosować *hak* (hook) `included`,
 można by w pliku `init.rb` napisać:
 
-```ruby
+code(ruby).
 class ActiveRecord::Base
 extend Apohllo::Acts::Timed::ClassMethods
 end
-```
 
 Efekt byłby taki sam. Zastosowano jednak wywołanie zwrotne, z
 dwóch powodów: po pierwsze - dołączanie modułów za
@@ -958,7 +941,7 @@ subtelności i wyczulenia na szczegóły.
 
 Poniżej przedstawiamy możliwość wykorzystania tak zdefiniowanego pluginu:
 
-```ruby
+code(ruby).
 class Newspaper &lt; ActiveRecord::Base
 acts\_as\_timed :old =&gt; 1.month
 end
@@ -984,7 +967,6 @@ wymarzony\_samochod.new?
 \#=&gt; false
 wymarzony\_samochod.to\_s
 \# "Wrak"
-```
 
 Na zakończenie warto wyjaśnić jeszcze jedną wątpliwość, która
 mogła zrodzić się w kontekście przedstawionego przykładu - dlaczego

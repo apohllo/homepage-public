@@ -16,7 +16,7 @@ Profil [ORCID](https://orcid.org/0000-0001-6684-0748)
 
 Klucz PGP:
 
-```
+code.
 ----~~BEGIN PGP PUBLIC KEY BLOCK----~~
 xjMEYmvv8RYJKwYBBAHaRw8BAQdAh4QxpDUwfXoLyS2Y4KZrfqW9jUmTstp1
 BD/q7PeKw17NGUFsIFBvIDxhcG9obGxvQGdtYWlsLmNvbT7CjwQQFgoAIAUC
@@ -29,4 +29,3 @@ VYEivOlkPcXOH4iO+pzJD6LBKOAxWAEAqYcXe3F7S7i6Mlpxnpe4xTPxJNMF
 jgy6JO8qTqJe6ScA/0rjudH1Udk48XrqToQOFZeyyviaL30ZdoMAGeSG16gJ
 =C8l+
 ----~~END PGP PUBLIC KEY BLOCK----~~
-```

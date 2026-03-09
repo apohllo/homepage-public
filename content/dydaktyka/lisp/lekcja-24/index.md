@@ -26,19 +26,17 @@ pól tej struktury. Po utworzeniu nowej struktury zwracana jest jej nazwa.
 
 #### 24.1
 
-```lisp
+code(lisp).
 (defstruct rower kierownica kola rama) =&gt; rower
-```
 
 Poza samą strukturą instrukcja ta definiuje funkcjie make-rower, rower-kierownica,
 rower-kola, rower-rama. Pierwsza z nich pozwala tworzyć nowe struktury typu rower,
 pozostałe zaś pozwalają na dostęp do poszczególnych pól roweru.
 h4. 24.2
 
-```lisp
+code(lisp).
 (make-rower) =&gt; \#s(rower :kierownica nil :kola nil :rama nil)
 (make-rower :rama 'zielona) =&gt; \#s(rower :kierownica nil :kola nil :rama zielona)
-```
 
 Instrukcja make-rower może pobierać jako argumenty nazwy poszczególnych pól wraz z ich wartościami,
 co powoduje, że przy tworzeniu wyspecyfikowane pola będą inicjowane właśnie tymi wartościami a nie
@@ -47,11 +45,10 @@ obiekt będący strukturą danego typu.
 
 #### 24.3
 
-```lisp
+code(lisp).
 (setq moj-rower (make-rower)) =&gt; \#s(rower :kierownica nil :kola nil :rama nil)
 (rower-kola moj-rower) =&gt; nil
 (setf (rower-kola moj-rower) dwa) =&gt; nil
 (rower-kola moj-rower) =&gt; dwa
-```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 23](/dydaktyka/lisp/lekcja-23) | [Lekcja 25](/dydaktyka/lisp/lekcja-25)

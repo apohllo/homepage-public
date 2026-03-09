@@ -53,7 +53,7 @@ Metoda ta jako pierwszy parametr przyjmuje nazwę metody do wywołania w postaci
 łańcucha znaków lub symbolu. Pozostałe parametry przekazane zostaną do wywoływanej
 metody:
 
-```ruby
+code(ruby).
 class Sesame
 def open\_sesame!(password)
 if password == "Abrakadabra"
@@ -64,7 +64,6 @@ end
 sesame = Sesame.new
 sesame.send(:open\_sesame!, "Abrakadabra")
 \#=&gt; "gold, silver and rock n' roll"
-```
 
 W powyższym przykładzie zilustrowane jest wykorzystanie metody `send`, do wywołania
 metody `open_sesame!` z parametrem `password` równym "Abrakadabra". W tym wypadku nic
@@ -85,7 +84,7 @@ obiekcie wszystkie metody zaczynające się na wybraną literę, albo wszystkie
 metody odczytu atrybutów, dla których zdefiniowane są również metody ich ustawienia.
 Możemy wtedy wykorzystać następujący kod:
 
-```ruby
+code(ruby).
 class Dynamic
 def for\_letter(letter, \*args)
 self.class.methods.select{|m| m =~ /\\A\#{letter}/}.each{|m| send(m, \*args)}
@@ -94,7 +93,6 @@ def writeable\_attributes
 self.class.methods.select{|m| m=~ /=\\Z/}.collect{|m| \[m,send(m.sub(/=\\Z/,""))\]}
 end
 end
-```
 
 W powyższym przykładzie w klasie `Dynamic` definiowane są dwie metody `for_letter` oraz
 `writeable_attributes`. Pierwsza z nich pozwala wywołać wszystkie metody zaczynając
@@ -137,7 +135,7 @@ Aby dodać nową metodę do wcześniej zdefiniowanej klasy wystarczy
 na zmianę hierarchii dziedziczenia danej klasy, więc należy w definicji
 wskazać właściwą klasę nadrzędną.
 
-```ruby
+code(ruby).
 class Base
 end
 class Inherited &lt; Base
@@ -157,7 +155,6 @@ end
 end
 object.bar
 \# "bar"
-```
 
 W powyższym przykładzie zdefiniowana jest klasa `Base` oraz klasa `Inherited`,
 która dziedziczy z `Base`. Pierwotna definicja klasy `Inherited`
@@ -210,7 +207,7 @@ znaków sekwencje modyfikujące sposób wyświetlania łańcucha, czy
 to w postaci tagów HTML czy też znaków sterujących w terminalach
 uniksowych:
 
-```ruby
+code(ruby).
 class String
 def hl(tag="em",hlstr=nil)
 if hlstr
@@ -222,7 +219,6 @@ end
 end
 "Ala ma kota".hl("b","ma").hl("p")
 \#=&gt; "
-```
 
 <p>
 Ala <b>ma</b> kota
@@ -289,7 +285,7 @@ W najprostszym przypadku można po prostu wypisać komunikat informujący, że
 dana metoda nie istnieje (w domyślnej implementacji rzucany jest wyjątek
 NameError):
 
-```ruby
+code(ruby).
 class Empty
 def method\_missing(name, \*arg)
 "Brak metody '\#{name}', do której przekazano argumenty \[\#{arg.join(", ")}\]"
@@ -298,7 +294,6 @@ end
 ala = Empty.new
 ala.ma\_kota?("Mamrota")
 \#=&gt; "Brak metody 'ma\_kota?', do której przekazano argumenty \[Mamrota\]"
-```
 
 W powyższym przykładzie metoda `method_missing` powoduje zwrócenie komunikatu
 mówiącego, że dana metoda nie istnieje.
@@ -320,12 +315,11 @@ sposób. Zamiast przekazywać je jako tablicę asocjacyjną postaci
 nazwie pojawią się nazwy atrybutów, a kryteria są przekazywane
 jako jej parametry:
 
-```ruby
+code(ruby).
 \# zwykły kod
 apples = Apple.find(:all, :conditions =&gt; {:color =&gt; "red"})
 \# bardziej obiektowy kod
 apples = Apple.find\_all\_by\_color("red")
-```
 
 Należy zwrócić uwagę, że metoda `find_all_by_color` nie jest zdefiniowana
 w klasie `Apple`. Odpowiednie wywołanie do bazy danych realizowane
@@ -338,13 +332,12 @@ stron internetowych `.haml` Jedną z ciekawych jej własności jest to, że
 klasa (HTML-owy atrybut `class`) danego elementu może pojawić się
 po nazwie tagu:
 
-```ruby
+code(ruby).
 div.left.highlight
 p.first
 To jest pierwszy akapit
 p.normal
 To jest drugi akapit
-```
 
 W powyższym przykładzie definiowana jest sekcja (`div`), która
 będzie posiadała atrybut `class` o wartościach `left` oraz `highlight`.
@@ -386,13 +379,12 @@ wprowadzić słowo kluczowe `alias`, po nim nazwę (w postaci symbolu)
 tworzonego aliasu, dalej nazwę (również w postaci symbolu) już
 zdefiniowanej metody, dla której tworzona jest nazwa alternatywna.
 
-```ruby
+code(ruby).
 class String
 alias :dlugosc :length
 end
 "abc".dlugosc
 \#=&gt; 3
-```
 
 W powyższym przykładzie w klasie `String` tworzony jest alias `dlugosc` dla
 metody `length`. Wywołanie metody `dlugosc` na dowolnym obiekcie tej
@@ -413,7 +405,7 @@ dla danej metody nie powoduje, że nazwy te są całkowicie utożsamione -
 zdefiniowanie metody o nazwie takiej jak alias innej metody powoduje, że
 powstają dwie zupełne odrębne metody:
 
-```ruby
+code(ruby).
 class String
 alias :dlugosc :length
 end
@@ -430,7 +422,6 @@ end
 \#=&gt; "długość jest nieznana"
 "abc".length
 \#=&gt; 3
-```
 
 W powyższym przykładzie widać dokładnie, że pomimo wcześniejszego zaliasowania
 metody `length` za pomocą nazwy `dlugosc`, zdefiniowanie tej drugiej metody
@@ -449,7 +440,7 @@ Tym niemniej wszyscy Ci, którzy zetknęli się z programowaniem zorientowanym
 chcielibyśmy dziedziczyć z oryginalnej klasy, to oczywiści nie
 mamy dostępu do modyfikacji, która pojawia się w nowej klasie:
 
-```ruby
+code(ruby).
 class Base
 def foo
 "foo"
@@ -468,7 +459,6 @@ in1.foo
 in2 = Inherited2.new
 in2.foo
 \#=&gt; "foo"
-```
 
 W powyższym przykładzie zilustrowany jest problem, o którym mowa. Jeśli
 chcemy nasze rozszerzenie wprowadzić w metodzie `foo`,
@@ -482,7 +472,7 @@ na wszystkie klasy poniżej tego poziomu.
 Wykorzystując mechanizm aliasowania języka Ruby, przedstawiony problem
 możemy rozwiązać w sposób następujący:
 
-```ruby
+code(ruby).
 class Base
 def foo
 "foo"
@@ -501,7 +491,6 @@ end
 end
 in.foo
 \#=&gt; "you said foo"
-```
 
 Oczywiście sceptycy mogą zapytać - dlaczego nie zmodyfikowano oryginalnej
 metody `foo`? Najprostsza odpowiedź brzmi - ponieważ nie było takiej
@@ -541,7 +530,7 @@ Niestety wspomniana klasa nie jest naszym własnym produktem i wiadomo,
 że może ulec dalszym zmianom. Rozwiązaniem problemu jest stworzenie
 rozszerzenia tej klasy:
 
-```ruby
+code(ruby).
 \# oryginalny kod, którego nie możemy zmodyfikować
 class Account
 attr\_accessor :balance
@@ -561,7 +550,6 @@ def transfer(amount, to)
     `logger.log("From balance: \#{self.balance}, to balance: \#{to.balance}")
 end
 end
-```
 
 W powyższym przykładzie dodanie logowania sprowadza się do
 dodania aliasu dla metody `transfer` oraz otoczenia oryginalnego
@@ -611,7 +599,7 @@ Znacznie prostsze wydało się przerobienie oryginalnej metody porównującej
 klasy `String`, tak by ona akceptowała również obiekty klasy `Lexeme`!
 To rozwiązanie zastosowałem właśnie w swoim prototypowym projekcie:
 
-```ruby
+code(ruby).
 class Lexeme
 \# metoda sprawdzająca czy leksem występuje w danej formie
 def has\_form?(form)
@@ -631,7 +619,6 @@ def (other)
 old\_equals(other)
 end
 end
-```
 
 Dzięki takiemu rozwiązaniu mogę np. przechowywać obiekty klas
 `Lexeme` oraz `String` w jednej tablicy i porównywać je miedzy
@@ -664,7 +651,7 @@ Tym mianem określa się metody, które \*definiowane są dla pojedynczych
 obiektów\*. Tak! Okazuje się, że w Ruby można dodać metodę do pojedynczego
 obiektu. Można to zrobić na trzy sposoby:
 
-```ruby
+code(ruby).
 my\_string = "trzy"
 class &lt;&lt; my\_string
 def to\_i
@@ -675,7 +662,6 @@ my\_string.to\_i
 \#=&gt; 3
 "trzy".to\_i
 \#=&gt; 0
-```
 
 Pierwszy sposób polega na wykorzystaniu słowa kluczowego `class`,
 po którym pojawia się operator `<<`, a po nim zmienna, która
@@ -684,18 +670,17 @@ odnosi się do obiektu, do którego dodawana jest metoda typu `singleton`.
 Drugi sposób polega na użyciu nazwy zmiennej przed nazwą dodawanej
 metody:
 
-```ruby
+code(ruby).
 my\_string = "trzy"
 def my\_string.to\_i
 3
 end
 my\_string.to\_i
 \#=&gt; 3
-```
 
 Trzeci sposób polega na wykorzystaniu metody `instance_eval`:
 
-```ruby
+code(ruby).
 my\_string = "trzy"
 my\_string.instance\_eval do
 def to\_i
@@ -704,7 +689,6 @@ end
 end
 my\_string.to\_i
 \#=&gt; 3
-```
 
 Metoda `instance_eval` akceptuje zarówno blok kodu jak i łańcuch znaków.
 
@@ -804,19 +788,18 @@ klasowe typu `Figure.instances`, są zdefiniowane w \_klasie singletonowej
 obiektu kryjącego się pod stałą `Figure`.\_ Żeby zobaczyć to naocznie
 możemy przywołać definicję z poprzedniego rozdziału:
 
-```ruby
+code(ruby).
 class Figure
 `@instances = 0
   def Figure.instances
     `@instances
 end
 end
-```
 
 Przy omówieniu metod klasowych wspomnieliśmy, że występują trzy ich
 postaci, ale trzecia zostanie omówiona później. Teraz jest to już oczywiste:
 
-```ruby
+code(ruby).
 class Figure
 `@instances
   class << self
@@ -825,7 +808,6 @@ class Figure
 end
 end
 end
-```
 
 W powyższym kodzie metoda `instances` definiowana jest jako singletonowa
 metoda obiektu, kryjącego się pod słowem kluczowym `self`, czyli obiektu

@@ -17,25 +17,23 @@ Instalacja z wykorzystaniem rubygems jest banalna (pod warunkiem, że mamy wersj
 
 ~~$ sudo gem install apohllo-colors~~
 
-```bash
+code(bash).
 $ sudo gem install gemcutter
 $ sudo gem tumble
 $ sudo gem install colors
-```
 
 ([Więcej o powodach przejścia na gemcutter](/blog/gemcutter).
 Upewnij się również, że masz Rubygems w wersji co najmniej 1.3.3)
 
 Potem odpalamy konsolę `irb` i sprawdzamy czy wszystko działa jak trzeba:
 
-```ruby
+code(ruby).
 require 'rubygems'
 require 'colors'
 "abc".hl \#=&gt; abc (wyboldowane, uwierzcie mi na słowo)
 "abc".hl(:red) \#=&gt; abc (czerwone, j.w. :)
 "ala ma kota ale nie ma psa".hl(:blue, "ma")
 \#=&gt; ala **ma** kota ale nie **ma** pas (wyróżnione słowa na niebiesko)
-```
 
 Sam w sobie projekt ten z pewnością nie robi dużego wrażenia, ale wykorzystuję go nagminnie.
 Każdy kto zetknął się z kolorowaną konsolą, wie jaka jest różnica pomiędzy jednolitym, czarnym, białym czy zielonym

@@ -32,12 +32,11 @@ zera. Chcą zastąpić wybrany znak innym możemy napisać
 
 #### 25.1
 
-```lisp
+code(lisp).
 (setq napis "Ala ma kota") =&gt; "Ala ma kota"
 ( char napis 2) =&gt; \#\\a
 ( setf (char napis 2) \#\\b) =&gt; \#\\a
 napis =&gt; "Alb ma kota"
-```
 
 Warto zwrócić uwagę, że znaki drukują się inaczej niż napisy. Jeśli chcemy uzyskać znaki w postaci
 napisów, mosimy dokonać konwersji coerce ze znaku na napis.
@@ -53,7 +52,7 @@ t oznacza, że wynikowy łańcuch ma zostać wydrukowany na standardowym wyjści
 
 #### 25.2
 
-```lisp
+code(lisp).
 (setq napis (fomrat nil "Ala ma kota"))
 =&gt; "Ala ma kota"
 napis =&gt; "Ala ma kota"
@@ -61,7 +60,6 @@ napis =&gt; "Ala ma kota"
 "Ala ma kota"
 =&gt; nil
 napis =&gt; nil
-```
 
 Jak wcześniej zauważyliśmy, w napisie mogą pojawić się elementy zadane jako argumenty insrukcji
 format. W napisie jednak muszą wystąpić odpowiednie znaki, które informują tą funkcję, gdzie
@@ -71,25 +69,23 @@ bądź symbol.
 
 #### 25.3
 
-```lisp
+code(lisp).
 (setq a 10) =&gt; 10
 (format t "Zmienna ~S ma wartość ~D" \`a a)
 Zmienna a ma wartość 10
 =&gt; nil
-```
 
 Innymi równie często pojawiającymi się kombinacjami znaków są <sub>&\\ oraz</sub>%. Pierwsza z nich powoduje
 przejście do nowej lini, jeśli bieżąca linia nie jest pusta, podczas gdy druga, powoduje bezwarunkowe
 przejści do nowej linii.
 h4. 25.4
 
-```lisp
+code(lisp).
 (format t "Napis <sub>&\\ w\\ kilku</sub>& linijkach")
 Napis
 w kilku
 linijkach
 =&gt; nil
-```
 
 ### 25.2 Odczytywanie informacji z wejścia
 
@@ -99,7 +95,7 @@ ponieważ nie będzie ewaluowana.
 
 #### 25.5
 
-```lisp
+code(lisp).
 (defun kwadrat ()
 (format t "Podaj liczbe ktorej kwadrat chcesz obliczyc: ")
 (let ((x (read)))
@@ -111,7 +107,6 @@ Podaj liczbę której kwadrat chcesz obliczyć:
 10
 Kwadratem liczby 10 jest 100
 =&gt; nil
-```
 
 ### 25.3 Operacje na plikach
 
@@ -127,16 +122,15 @@ Przypuśćmy, że wpliku "dane.dat" w katalogu bieżącym znajdują sią następ
 
 #### 25.6
 
-```lisp
+code(lisp).
 1
 (maluch polonez syrenka)
-```
 
 Dostęp do tych danych jest następujący
 
 #### 25.7
 
-```lisp
+code(lisp).
 (with-open-file (plik "dane.dat")
 (let ((numer-samochodu (read plik))
 (lista-samochodow (read plik)))
@@ -146,7 +140,6 @@ Dostęp do tych danych jest następujący
 )
 Najlepszym samochodem jest polonez
 =&gt; nil
-```
 
 #### 25.3.2 Zapis do pliku
 
@@ -158,7 +151,7 @@ pliku.
 
 #### 25.8
 
-```lisp
+code(lisp).
 (let ((lista-samochodow '(maluch polonez syrenka))
 (numer-samochodu 2))
 (with-open-file (plik "dane.dat" :direction :output)
@@ -166,15 +159,13 @@ pliku.
 (format plik "<sub>S</sub>%" lista-samochodow)
 )
 ) =&gt; nil
-```
 
 Po wykonani tej formy w pliku "dane.dat" pojawią się następujące linie:
 
 #### 25.9
 
-```lisp
+code(lisp).
 2
 (maluch polonez syrenka)
-```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 24](/dydaktyka/lisp/lekcja-24)

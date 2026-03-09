@@ -46,13 +46,12 @@ do Javy, czy C++, nie można manipulować bezpośrednio na wartościach atrybut�
 Tym niemniej nieraz spotkamy się z wyrażeniami, które z pozoru wyglądają,
 jakby bezpośrednio modyfikowały wartość jakiegoś atrybutu, np.
 
-```ruby
+code(ruby).
 person = Person.new
 person.name = "Aaron"
 \#=&gt; "Aaron"
 his\_name = person.name
 \#=&gt; "Aaron"
-```
 
 Przypisanie pojawiające się w drugiej linii kodu wygląda jakby modyfikowało
 wartość atrybutu `name` obiektu `person`. W czwartej linii
@@ -95,18 +94,16 @@ tworzone w nieco bardziej wygodny i naturalny sposób.
 Dla klas sytuacja jest podobna - chociaż możemy tworzyć je wykorzystując
 następującą konstrukcję:
 
-```ruby
+code(ruby).
 Person = Class.new
-```
 
 to język dostarcza konstrukcji pozwalających na znacznie wygodniejsze
 definiowanie klas. W szczególności powyższa klasa może być zdefiniowana
 z wykorzystaniem słowa kluczowego `class` w sposób następujący:
 
-```ruby
+code(ruby).
 class Person
 end
-```
 
 Na pierwszy rzut oka definicja ta jest bardziej rozwlekła. Z drugiej jednak
 strony pozwala na znacznie łatwiejsze definiowanie podstawowych
@@ -119,10 +116,9 @@ przykładach, dotyczy sposobu tworzenia klas - są one przypisywane
 do stałych, które w języku Ruby odróżniają się tym od zmiennych,
 że pierwsza litera ich nazwy jest wielka.
 
-```ruby
+code(ruby).
 PI = 3.141
 pi = 3.141
-```
 
 Zatem w powyższym kodzie występują dwie operacja przypisania, spośród których
 pierwsza przypisuje wartość do stałej, a druga do zmiennej. Różnica wynika
@@ -147,12 +143,11 @@ Otóż metoda ta pozwala tworzyć nowe obiekty danej klasy. Metoda
 ta jest oczywiście wywoływana jak każda inna metoda - poprzez
 operator . (kropka):
 
-```ruby
+code(ruby).
 class Person
 end
 person = Person.new
 \#=&gt; \#<Person:0xb7955314>
-```
 
 W powyższym przykładzie najpierw definiowana jest klasa `Person`, następnie
 tworzony jest obiekt tej klasy, który przypisywany jest do zmiennej `person`.
@@ -182,7 +177,7 @@ jej atrybutów.
 Metoda `initialize` może przyjmować dowolną ilość argumentów, które
 przekazywane są do niej z metody `new`:
 
-```ruby
+code(ruby).
 class Person
 def initialize(name, surname)
 puts name + " " + surname
@@ -191,7 +186,6 @@ end
 person = Person.new("Franz", "Kafka")
 \# Franz Kafka
 \#=&gt; \#<Person:0xb7926690>
-```
 
 W powyższym przykładzie widzimy w jaki sposób obie metody współdziałają
 przy tworzenie nowego obiektu. Oczywiste jest, że metoda `new` powoduje
@@ -199,7 +193,7 @@ wywołanie metody `initialize`. Zastanawiające może być jednak to, że
 przekazanie niewłaściwej liczby argumentów do metody `new` powoduje
 wywołanie wyjątku `ArgumentError`:
 
-```ruby
+code(ruby).
 class Person
 def initialize(name, surname)
 puts name + " " + surname
@@ -207,7 +201,6 @@ end
 end
 person = Person.new("Franz")
 \# ArgumentError: wrong number of arguments (1 for 2)
-```
 
 Skąd metoda `new`, która zdefiniowana jest w klasie `Class` może
 wiedzieć ile argumentów wymaga metoda `initialize`, która zdefiniowana
@@ -244,15 +237,13 @@ drzewa dziedziczenia. Aby wskazać, że dana klasa dziedziczy z innej
 klasy niż `Object` należy w definicji klasy po jej nazwie dodać znak mniejszości
 oraz nazwę klasy nadrzędnej.
 
-```ruby
+code(ruby).
 class Person
 end
-```
 
-```ruby
+code(ruby).
 class Player &lt; Person
 end
-```
 
 W powyższym przykładzie dla klasy `Person` nie została jawnie określona
 jej klasa nadrzędna, zatem przyjmowana jest klasa `Object`. Natomiast
@@ -265,7 +256,7 @@ dziedziczenia definiuje metodę o tej samej nazwie, to wybierana jest ta
 metoda, która leży w klasie znajdującej się najbliżej klasy danego obiektu
 (w szczególności może to być metoda zdefiniowana w tej klasie):
 
-```ruby
+code(ruby).
 class Person
 def foo
 puts "person"
@@ -282,7 +273,6 @@ p1.foo
 p2 = Player.new
 p2.foo
 \# "player"
-```
 
 W powyższym przykładzie zarówno klasa `Person` jak i `Player` definiuje
 metodę `foo`. Wywołanie tej metody dla obiektu klasy `Person` powoduje
@@ -294,7 +284,7 @@ Aby odwołać się do definicji znajdującej się w klasie nadrzędnej
 korzystamy ze słowa kluczowego `super`, które powoduje wywołanie
 metody o tej samej nazwie, tyle, że w klasie nadrzędnej:
 
-```ruby
+code(ruby).
 class Person
 def foo
 puts "person"
@@ -310,7 +300,6 @@ p2 = Player.new
 p2.foo
 \# "person"
 \# "player"
-```
 
 W powyższym przykładzie w definicji metody `foo` znajdującej się
 w klasie `Player` najpierw wywoływana jest metoda `foo` z klasy
@@ -344,7 +333,7 @@ porównywanego oraz -1 jeśli jest mniejszy. Jeśli te warunki są spełnione, t
 moduł `Comparable` dostarcza metod `<, >, <=, ==, >=` oraz
 `between?`.
 
-```ruby
+code(ruby).
 class Player
 include Comparable
 attr\_reader :score
@@ -359,7 +348,6 @@ p1 = Player.new(10)
 p2 = Player.new(20)
 p1 &lt; p2
 \#=&gt; true
-```
 
 W powyższym przykładzie definiowana jest klasa `Player`, do której dołączany
 jest (za pomocą słowa kluczowego `include`) moduł `Comparable`. Klasa
@@ -392,14 +380,13 @@ Aby odwołać się do klasy, która leży wewnątrz jakiegoś modułu,
 należy jej nazwę poprzedzić nazwą modułu oraz
 dwoma dwukropkami:
 
-```ruby
+code(ruby).
 module Apohllo
 class Node
 \# definicja klasy
 end
 end
 node = Apohllo::Node.new
-```
 
 W powyższym przykładzie widzimy odwołanie do klasy `Node`, która leży
 wewnątrz przestrzeni nazw (modułu) `Apohllo`.
@@ -423,7 +410,7 @@ Atrybuty takie odróżniane są od zmiennych za pomocą pojedynczego zmaku @,
 który pojawia się przed nazwą atrybutu. Typowy przykład wykorzystania
 atrybutów przedstawiony jest poniżej:
 
-```ruby
+code(ruby).
 class Person
 def initialize(name, surname)
 `name = name
@@ -441,7 +428,6 @@ p1.name
 \#=&gt; "Frank"
 p1.surname
 \#=&gt; "Sinatra"
-```
 
 W powyższym przykładzie definiowana jest klasa `Person`, w której konstruktorze
 inicjalizowane są dwie zmienne klasowe `@name` oraz `@surname`, na podstawie
@@ -472,7 +458,7 @@ odpowiednich atrybutów. Ostatnia metoda jest jakby sumą dwóch wcześniej
 opisanych metod, gdyż tworzy metody pozwalające \*zarówno na odczytanie,
 jak i ustawienie wartości\* odpowiednich atrybutów.
 
-```ruby
+code(ruby).
 class Program
 attr\_reader :java\_code
 attr\_writer :perl\_code
@@ -514,7 +500,6 @@ hello\_world.run
 \# Hello world!
 \# In Perl
 \# Hello world!
-```
 
 W powyższym (nieco zagmatwanym) przykładzie definiujemy klasę
 `Program`, która potrafi reprezentować kod programu w językach: Perl,
@@ -543,7 +528,7 @@ wszystkie klasy w hierarchii dziedziczenia.
 Do zmiennych klasowych odwołujemy się poprzedzając ich nazwę dwoma znakami
 @@, np.
 
-```ruby
+code(ruby).
 class Figure
 `@instances = 0
   def initialize(shape)
@@ -561,7 +546,6 @@ puts f1
 f2 = Figure.new("triangle")
 puts f2
 \# \[2\] triangle
-```
 
 W powyższym przykładzie definiujemy klasę `Figure`, która posiada zmienną
 klasową `@`instances`, w której przechowywana jest liczba instancji klasy
@@ -571,7 +555,7 @@ znaków. Widzimy, że pierwsza stworzona figura ma identyfikator o
 wartości 1, natomiast druga - o wartości 2. Nieco bardziej interesujący
 jest przykład następny:
 
-```ruby
+code(ruby).
 class Figure
 `@instances = 0
   def initialize
@@ -594,7 +578,6 @@ puts oval
 triangle = Triangle.new
 puts triangle
 \# \[2\] Triangle
-```
 
 W powyższym przykładzie definiowane są trzy klasy: `Figure, Oval` i `Triangle`.
 W klasie `Figure` definiowana jest zmienna klasowa `@`instances`, która,
@@ -622,7 +605,7 @@ kluczowym `def`, po którym następuje nazwa metody oraz lista jej parametrów.
 Jedyna różnica w definicji metody w stosunku do definicji funkcji polega
 na tym, że definicja tej pierwszej pojawia się wewnątrz definicji klasy:
 
-```ruby
+code(ruby).
 def function(param)
 puts param
 end
@@ -631,14 +614,13 @@ def method(param)
 puts param
 end
 end
-```
 
 Wywołanie metody, w przeciwieństwie do wywołania funkcji może być dokonywane
 tylko na rzecz określonego obiektu. Obiekt ten dostępny jest w ciele metody
 poprzez słowo kluczowe `self`. W rzeczywistości w funkcjach pod tym słowem
 również kryje się pewien obiekt, ale nie pojawia się on w wywołaniach funkcji:
 
-```ruby
+code(ruby).
 def function
 self
 end
@@ -655,7 +637,6 @@ obj1.method
 \#=&gt; \#<Example:0xb79ae310>
 obj2.method
 \#=&gt; \#<Example:0xb79ac254>
-```
 
 W powyższym przykładzie w metodzie `method` widnieje odwołanie do obiektu,
 na rzecz którego metoda ta jest wywoływana. Widzimy zatem, że metoda
@@ -680,25 +661,23 @@ rozdziale następnym.
 Pierwszy sposób definiowania metod klasowych polega na \*poprzedzeniu nazwy metody
 nazwą klasy\* zakończonej kropką:
 
-```ruby
+code(ruby).
 class Figure
 `@instances = 0
   def Figure.instances
     `@instances
 end
 end
-```
 
 Drugi sposób polega na **poprzedzeniu nazwy metody słowem kluczowym `self`**:
 
-```ruby
+code(ruby).
 class Figure
 `@instances = 0
   def self.instances
     `@instances
 end
 end
-```
 
 W powyższych przykładach definiowana jest metoda klasowa `Figure.instances`,
 która zwraca wartość zmiennej klasowej `@`instances`. W rzeczywistości
@@ -723,7 +702,7 @@ o takiej samej nazwie, lecz bez wykrzyknika\*. Tę konwencję
 mogliśmy zaobserwować przy omówieniu podstawowych typów język Ruby.
 (Więcej na temat tej konwencji można przeczytać na [Blogu Radarka](http://radarek.jogger.pl/2009/02/21/ruby-a-metody-z-i-w-nazwie/) )
 
-```ruby
+code(ruby).
 class Mind
 INNATE\_IDEAS = \[
 "God exists",
@@ -783,7 +762,6 @@ stupid\_idea2 = Idea.new("Animals are machines")
 cartesian\_mind.think(stupid\_idea1 + stupid\_idea2)
 cartesian\_mind.say\_something
 \#=&gt; "Pineal gland is the seat of the soul"
-```
 
 W powyższym przykładzie można zaobserwować w jaki sposób metody operatorowe oraz
 metody zakończone znakami specjalnymi poprawiają czytelność kodu. Zdefiniowane zostały
@@ -840,7 +818,7 @@ Drugi sposób polega na użyciu
 specyfikatora dostępu bez listy argumentów - wtedy wszystkie metody, aż do następnego
 specyfikatora (lub końca definicji klasy) otrzymają określony dostęp.
 
-```ruby
+code(ruby).
 class Accessible
 \# public method
 def foo
@@ -861,7 +839,6 @@ end
 def dup
 end
 end
-```
 
 W definicji powyższej klasy tylko metoda `foo` jest publiczna. Metody `fus`, `bar` i `baz` są
 prywatne, natomiast metody `dip` i `dup` są chronione.

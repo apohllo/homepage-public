@@ -46,7 +46,7 @@ bo formularz rejestracyjny jest OLBRZYMI, choć zawiera tylko trzy pola :)
 Po rejestracji powinniśmy zainstalować gem gemcutter, na lokalnej maszynie. Trzeba jednak wpierw upewnić
 się, czy mamy rubygems w wersji co najmniej 1.3.3:
 
-```bash
+code(bash).
 $ gem -v
 1.3.1 \# myślałem, że mam najnowsze rubygems...
 $ gem update --system
@@ -58,7 +58,6 @@ $ gem -v
 1.3.5 \# uff
 $ gem install gemcutter
 ...
-```
 
 Razem z gemem dostajemy nowe polecenia dla rubygems:
 
@@ -76,7 +75,7 @@ gemami będzie takie, jak być powinno :)
 
 Na pierwszy ogień wziąłem mój gem [colors](http://github.com/apohllo/colors).
 
-```bash
+code(bash).
 $ gem build colors.gemspec
 WARNING: no rubyforge\_project specified
 Successfully built RubyGem
@@ -90,7 +89,6 @@ Password:
 Signed in. Your api key has been stored in ~/.gemrc
 Pushing gem to Gemcutter...
 Successfully registered gem: colors (0.0.4)
-```
 
 Mając w pamięci doświadczenia z githubem, gdzie po wrzuceniu gemu do repo, jego zbudowanie i pojawienie się
 w repo trwało kilkanaście minut, a często wiązało się z modyfikacją manifestu (brakujące pliki, etc.)
@@ -99,7 +97,7 @@ dla terminu "colors" od razu zwrócił mój gem!
 
 Postanowiłem więc sprawdzić, czy faktycznie jest widoczny przez rubygems:
 
-```bash
+code(bash).
 $ sudo gem install colors
 ERROR: could not find gem colors locally or in a repository
 $ sudo gem tumble
@@ -118,7 +116,6 @@ $ irb
 =&gt; true
 &gt;&gt; puts "abc".hl
 **abc** \#wyboldowane :)
-```
 
 Zatem działa! Biorąc pod uwagę fakt, że wszystko (łącznie z tym postem), zajęło mi mniej niż
 godzinę, zamierzam używać Gemcuttera!

@@ -19,18 +19,16 @@ Na przyszłość użyjemy tylko strzałki. A więc nasz przykład zapiszemy tak:
 
 #### 3.1.
 
-```lisp
+code(lisp).
 (+ 2 3) =&gt; 5
-```
 
 Oto więcej przykładów wyrażeń w notacji EVAL:
 
 #### 3.2.
 
-```lisp
+code(lisp).
 (+ 1 6) =&gt; 7
 (\* 3 (+ 1 6)) =&gt; 21
 (/ (\* 2 11) (+ 1 6)) =&gt; 22/7
-```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 2](/dydaktyka/lisp/lekcja-2) | [Lekcja 4](/dydaktyka/lisp/lekcja-4)

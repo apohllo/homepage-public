@@ -34,22 +34,20 @@ Dzięki takiemu zapisowi możliwe jest tworzenie funkcji, których wynikami będ
 
 #### 19.1
 
-```lisp
+code(lisp).
 (defun dodaj-n (n)
 (lambda (x) (+ x n))
 ) =&gt; dodaj-n
 (setf f (dodaj-n 5)) =&gt; \#<FUNCTION :LAMBDA (X) (+ X N)>
 (funcall f 10) =&gt; 15
-```
 
 Notację lambda można też wykorzystywać do tworzenia anonimowych funkcji aplikowanych przez takie
 instrukcje jak mapcar:
 
 #### 19.2
 
-```lisp
+code(lisp).
 (mapcar (lambda (x) (+ x 10)) '(1 2 3 4 5))
 =&gt; (11 12 13 14 15)
-```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 18](/dydaktyka/lisp/lekcja-18) | [Lekcja 20](/dydaktyka/lisp/lekcja-20)

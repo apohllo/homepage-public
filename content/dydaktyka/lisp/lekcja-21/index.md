@@ -28,12 +28,11 @@ Ma ona składnię (push element stack).
 
 #### 21.1
 
-```lisp
+code(lisp).
 (setf stos ()) =&gt; nil
 (push 'a stos) =&gt; (a)
 (push 'b stos) =&gt; (b a)
 (push 'c stos) =&gt; (c b a)
-```
 
 ### 21.2 pop
 
@@ -42,12 +41,11 @@ Instrukcja ta ma postać (pop stack)
 
 #### 21.2
 
-```lisp
+code(lisp).
 (setf stos '(c b d)) =&gt; (c b a)
 (pop sots) =&gt; c
 stos =&gt; (b a)
 (pop stos) =&gt; b
 stos =&gt; (a)
-```
 
 [Spis treści](/dydaktyka/lisp) | [Lekcja 20](/dydaktyka/lisp/lekcja-20) | [Lekcja 22](/dydaktyka/lisp/lekcja-22)

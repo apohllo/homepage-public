@@ -11,10 +11,9 @@ author: 149.156.173.53
 
 Dobrym dodatkiem do Vima jest zestaw pluginów, które ułatwiają pracę z Railsami.
 
-```
+code.
 cp -r /home/pracow/pohl/vim ~/.vim
 cp /home/pracow/pohl/vim\_rc ~/.vimrc
-```
 
 Po instalacji dostępnych będzie kilka przydatnych komend:
 

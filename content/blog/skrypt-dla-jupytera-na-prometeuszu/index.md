@@ -12,31 +12,28 @@ Jako alternatywę polecam użycie biblioteki [idact](https://pypi.org/project/id
 
 Ważne jest aby przed instalacją virutalneva załadować odpowiedni moduł Python, np.
 
-```bash
+code(bash).
 unset PYTHONPATH
 module load plgrid/tools/python/3.6.5
-```
 
 Następnie instalujemy [virtualenva](https://virtualenv.pypa.io/en/latest/) na Prometeuszu.
 Najprościej zrobić to zgodnie z [instrukcją z dokumentacji Virtualnevna](https://virtualenv.pypa.io/en/latest/installation/)
 
 Zakładamy, że virtualenv jest w katalogu `~/python3_6`. Aktywujemy go wywołaniem:
 
-```bash
+code(bash).
 source ~/python3\_6/bin/activate
-```
 
 Instalujemy wszystkie potrzebne nam biblioteki, w szczególności Jupytera:
 
-```bash
+code(bash).
 pip install jupyter-notebook
-```
 
 Generujemy również klucz, który pozwoli nam na logowanie się na Prometeusza z Prometeusza, bez podawania hasła.
 
 Następnie tworzymy plik o nazwie `jupyter.sh` o następującej treści
 
-```bash
+code(bash).
 unset PYTHONPATH
 module load plgrid/apps/cuda/9.0
 module load plgrid/libs/lapack/3.8.0
@@ -53,10 +50,8 @@ source ~/python3\_6/bin/activate
 ~/python3\_6/bin/jupyter-notebook --no-browser --port=${PORT} notebooks &
 sleep 10
 ssh -N -R ${PORT}:localhost:${PORT} login01
-```
 
 Po uzyskaniu dostępu do węzła obliczeniowego plik ten pozwoli nam na pracę na Jupyterze na komputerze lokalnym, pod warunkiem, że zalogujemy się przekierowując port `9000`
 
-```bash
+code(bash).
 ssh pro -L 9000:localhost:9000
-```
